@@ -15,23 +15,18 @@ export class ChampionsService {
   selectedChampion!: PartialChampion;
 
   constructor() {
-    this.client
-      .get(
-        `https://ddragon.leagueoflegends.com/cdn/${this.version}/data/es_AR/champion.json`
-      )
-      .subscribe({
-        next: ({ data }: any) => {
-          this.champions = Object.values(data).map(
-            (champInfo) => this.parseChampionInfo(champInfo) as PartialChampion
-          );
-        },
-      });
-    const storedChampion = localStorage.getItem('current-champion');
-    if (storedChampion) {
-      this.selectedChampion = JSON.parse(storedChampion);
-    } else if (this.champions.length > 0) {
-      this.selectedChampion = this.champions[0];
-    }
+    const url = `https://ddragon.leagueoflegends.com/cdn/${this.version}/data/es_AR/champion.json`;
+    firstValueFrom(this.client.get(url)).then((response: any) => {
+      this.champions = Object.values(response.data).map(
+        (champInfo) => this.parseChampionInfo(champInfo) as PartialChampion
+      );
+      const storedChampion = localStorage.getItem('current-champion');
+      if (storedChampion) {
+        this.selectedChampion = JSON.parse(storedChampion);
+      } else if (this.champions.length > 0) {
+        this.selectedChampion = this.champions[0];
+      }
+    });
   }
 
   private parseChampionInfo(champInfo: any) {
