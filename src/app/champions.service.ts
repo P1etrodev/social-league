@@ -33,20 +33,7 @@ export class ChampionsService {
 
   private parseChampionInfo(champInfo: any) {
     return {
-      id: champInfo.id,
-      name: champInfo.name,
-      title: champInfo.title,
-      blurb: champInfo.blurb,
-      lore: champInfo.lore,
-      tags: champInfo.tags,
-      info: {
-        attack: champInfo.info.attack,
-        defense: champInfo.info.defense,
-        magic: champInfo.info.magic,
-        difficulty: champInfo.info.difficulty,
-      },
-      passive: champInfo.passive,
-      spells: champInfo.spells,
+      ...champInfo,
       skins: champInfo.skins?.slice(1).map((e: any): number => e.num),
     } as Champion;
   }
@@ -60,7 +47,7 @@ export class ChampionsService {
 
     const champInfo = data[championId];
     // Mapeamos los datos al modelo Champion
-    return this.parseChampionInfo(champInfo) as Champion;
+    return this.parseChampionInfo(champInfo);
   }
 
   get selectedChampion() {
