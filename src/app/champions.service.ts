@@ -12,10 +12,7 @@ export class ChampionsService {
   private version = '14.23.1';
   champions = new Array<PartialChampion>();
 
-  private selectedChampionSubject = new BehaviorSubject<PartialChampion | null>(
-    null
-  );
-  selectedChampion$ = this.selectedChampionSubject.asObservable();
+  selectedChampion!: PartialChampion;
 
   constructor() {
     this.client
@@ -31,9 +28,9 @@ export class ChampionsService {
       });
     const storedChampion = localStorage.getItem('current-champion');
     if (storedChampion) {
-      this.selectedChampionSubject.next(JSON.parse(storedChampion));
+      this.selectedChampion = JSON.parse(storedChampion);
     } else if (this.champions.length > 0) {
-      this.setSelectedChampion(this.champions[0]);
+      this.selectedChampion = this.champions[0];
     }
   }
 
@@ -56,12 +53,8 @@ export class ChampionsService {
     return this.parseChampionInfo(champInfo);
   }
 
-  get selectedChampion() {
-    return this.selectedChampionSubject.value as PartialChampion;
-  }
-
   setSelectedChampion(champion: PartialChampion): void {
-    this.selectedChampionSubject.next(champion);
+    this.selectedChampion = champion;
     localStorage.setItem('current-champion', JSON.stringify(champion));
   }
 
