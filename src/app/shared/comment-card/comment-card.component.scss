@@ -1,41 +1,65 @@
 @use "../../../styles/variables" as vars;
+.post-url {
+  /* Espaciado y estilo general */
+  padding-inline: 1em;
+  padding-top: 1em;
+  color: vars.$secondary;
+  text-decoration: none;
 
-.comment {
+  /* Control del ancho */
+  width: fit-content;
+  max-width: 40%;
+
+  /* Flexbox para alineación y distribución */
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+
+  /* Evitar desbordamiento */
+  overflow: hidden;
+  white-space: nowrap;
+
+  /* Estilo de hover */
+  &:hover {
+    color: vars.$primary;
+    text-decoration: underline;
+  }
+
+  /* SVG ajustes */
+  svg {
+    flex-shrink: 0;
+    height: 1em;
+  }
+
+  /* Span con elipsis */
+  span {
+    flex-grow: 1; /* Permite que el span ocupe el espacio restante */
+    overflow: hidden; /* Oculta texto desbordante */
+    text-overflow: ellipsis; /* Aplica "..." al texto truncado */
+    white-space: nowrap; /* Evita saltos de línea */
+  }
+}
+
+.container {
   display: flex;
   flex-flow: column;
   background-color: vars.$dark;
-  position: relative;
-
-  &:last-child {
-    border-end-start-radius: 10px !important;
-    border-end-end-radius: 10px !important;
-  }
-
-  .header {
+  .comment {
     display: flex;
-    justify-content: space-between;
+    flex-flow: row;
+    width: 100%;
+    gap: 0.5em;
     padding: 1em;
-    align-items: center;
-    position: relative;
-
-    .champ {
+    font-size: 1rem !important;
+    .left {
       display: flex;
-      align-items: center;
-      gap: 0.5em;
-      color: vars.$primary;
-      text-decoration: none;
-
-      .op {
-        color: vars.$secondary;
-        font-size: 1em;
-        font-weight: 600;
-      }
-
+      flex-flow: column;
+      justify-content: start;
       .icon {
-        height: 2em;
-        width: 2em;
+        height: 2.5em;
+        width: 2.5em;
         border-radius: 50%;
-        border: 3px solid vars.$primary;
+        border: 3px solid vars.$dark;
         overflow: hidden;
         display: flex;
         img {
@@ -46,15 +70,21 @@
           align-self: center;
         }
       }
+    }
+    .right {
+      display: flex;
+      flex-flow: column;
+      gap: 0.5em;
 
       .identity {
         display: flex;
         align-items: center;
         gap: 0.25em;
-        font-size: 1em;
-        text-decoration: none;
         position: relative;
+        padding-bottom: 3px;
+
         .name {
+          text-decoration: none;
           color: vars.$primary;
           font-weight: 500;
           &:hover {
@@ -65,38 +95,54 @@
           color: vars.$light;
           text-decoration: none !important;
         }
-        .mini-profile {
-          position: absolute;
-          bottom: 0;
-          left: 50%;
-          opacity: 0; /* Completamente transparente */
-          visibility: hidden; /* Oculto visualmente */
-          transform: translateY(
-            10px
-          ); /* Desplazado hacia arriba para el efecto */
-          transition: opacity 200ms ease, transform 200ms ease, visibility 200ms;
-          z-index: 100;
-        }
-
-        &:hover .mini-profile {
-          opacity: 1; /* Completamente visible */
-          visibility: visible; /* Se hace visible */
-          transform: translateY(0); /* Vuelve a su posición original */
+        .created-at {
+          color: vars.$light;
         }
       }
     }
 
-    .created-at {
-      color: vars.$light;
-    }
-  }
-
-  .body {
-    padding-inline: 1em;
-    padding-bottom: 1em;
-
-    .content {
+    .body {
       color: vars.$white;
+    }
+
+    .footer {
+      color: vars.$secondary;
+      display: flex;
+      flex-direction: column;
+
+      .actions {
+        display: flex;
+        justify-content: left;
+        gap: 1em;
+        a {
+          width: fit-content;
+          border: none;
+          background: none;
+          color: vars.$light;
+          cursor: pointer;
+          border-radius: 5px;
+          display: flex;
+          align-items: center;
+          gap: 0.5em;
+          text-decoration: none;
+          transition: color 250ms ease-in-out;
+
+          svg {
+            flex-shrink: 0;
+            height: 1.25em;
+          }
+
+          span {
+            font-size: 1em;
+            font-weight: 400;
+          }
+
+          &:hover {
+            // backdrop-filter: brightness(200%);
+            color: vars.$primary;
+          }
+        }
+      }
     }
   }
 }

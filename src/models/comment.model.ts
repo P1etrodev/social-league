@@ -3,6 +3,10 @@ export interface Comment {
   champion: string;
   content: string;
   post_id: string;
+  post: {
+    id: string;
+    content: string;
+  };
 }
 
-export interface NewComment extends Comment {}
+export type NewComment = Omit<Comment, 'post'>;

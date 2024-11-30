@@ -28,7 +28,7 @@ export class SpellsComponent implements OnInit {
     const prefix = !this.current.isPassive
       ? prefixes[this.spells.indexOf(this.current.spell)]
       : 'Pasiva';
-    return `(${prefix}) ${this.current.spell.name}`;
+    return `${this.current.spell.name} (${prefix})`;
   }
 
   get currentDescription() {

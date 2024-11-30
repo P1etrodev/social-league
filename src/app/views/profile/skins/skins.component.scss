@@ -6,11 +6,8 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: vars.$primary;
+  background-color: vars.$secondary;
   border-radius: 5px;
-  &:hover {
-    background-color: vars.$secondary;
-  }
 }
 
 #gallery {
@@ -21,6 +18,7 @@
   #wrapper {
     position: relative;
     border: vars.$primary 3px solid;
+    width: 100%;
 
     #slider {
       position: relative;
@@ -29,10 +27,11 @@
       overflow-x: hidden;
       scroll-snap-type: x mandatory;
       scroll-behavior: smooth;
-      aspect-ratio: 16/9;
+      width: 100%;
 
       img {
-        flex: 1 0 100%;
+        aspect-ratio: 16/9;
+        width: 100%;
         scroll-snap-align: start;
         object-fit: cover;
       }
@@ -41,7 +40,7 @@
     #button-right {
       position: absolute;
       height: 100%;
-      width: 3em;
+      width: 8%;
       cursor: pointer;
       display: flex;
       flex-flow: column;
@@ -73,22 +72,23 @@
     position: relative;
     display: flex;
     border-inline: 3px solid vars.$primary;
-    height: 5em;
+    border-bottom: 3px solid vars.$primary;
+    height: 4em;
     width: 100%;
     overflow-x: auto;
-    z-index: 1;
-    background-color: vars.$primary;
+    background-color: vars.$dark;
 
-    button:not(#button-left, #button-right) {
+    button {
       cursor: pointer;
-      opacity: 0.5;
+      opacity: 0.25;
       transition: opacity ease 250ms;
       border: none;
       display: flex;
-      aspect-ratio: 16/9;
       background-color: transparent;
+
       img {
         height: 100%;
+        aspect-ratio: 16/9;
       }
       &:hover,
       &.current {

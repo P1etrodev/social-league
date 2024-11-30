@@ -2,7 +2,11 @@
   <new-post (onPostAdded)="onPostAdded($event)"></new-post>
   @defer(when supaService.posts) {
   <div id="posts">
-    <post-card *ngFor="let post of supaService.posts" [post]="post"></post-card>
+    <post-card
+      class="post"
+      *ngFor="let post of supaService.posts"
+      [post]="post"
+    ></post-card>
   </div>
   }
 </div>

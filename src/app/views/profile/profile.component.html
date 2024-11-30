@@ -13,7 +13,7 @@
       </div>
     </div>
     <div id="right">
-      <a [href]="'/profile/' + champion.id" id="identity">
+      <a href="/profile/{{ champion.id }}" id="identity">
         <p id="name">{{ champion.id }}</p>
         <p id="identifier">
           {{ champion.title | identifier }}
@@ -24,12 +24,6 @@
       </div>
       <div id="lore">
         <p>{{ champion.lore }}</p>
-      </div>
-      <div id="spells">
-        <app-spells
-          [passive]="champion.passive"
-          [spells]="champion.spells"
-        ></app-spells>
       </div>
     </div>
   </div>
@@ -44,13 +38,19 @@
       (click)="currentContent = 'comments'"
       [ngClass]="{ active: currentContent === 'comments' }"
     >
-      Comentarios
+      Respuestas
     </button>
     <button
       (click)="currentContent = 'skins'"
       [ngClass]="{ active: currentContent === 'skins' }"
     >
       Skins
+    </button>
+    <button
+      (click)="currentContent = 'skills'"
+      [ngClass]="{ active: currentContent === 'skills' }"
+    >
+      Habilidades
     </button>
   </div>
   <div id="profile-content">
@@ -71,14 +71,25 @@
     </div>
     } @else if (this.currentContent === 'comments') {
     <div id="profile-comments">
-      @if (!comments.length) {
-      <h1 id="empty">{{ champion.name }} aún no ha hecho comentarios.</h1>
-      }
+      @defer (when comments) {
       <comment-card
+        [withPostUrl]="true"
         class="comment"
         *ngFor="let comment of comments"
         [comment]="comment"
       ></comment-card>
+      } @placeholder {
+      <h1 id="empty">
+        {{ champion.name }} aún no respondió a ninguna publicación.
+      </h1>
+      }
+    </div>
+    } @else if (currentContent === 'skills') {
+    <div id="profile-skills">
+      <app-spells
+        [passive]="champion.passive"
+        [spells]="champion.spells"
+      ></app-spells>
     </div>
     }
   </div>

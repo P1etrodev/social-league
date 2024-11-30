@@ -1,5 +1,4 @@
 @use "./variables" as vars;
-@use "./navbar";
 
 * {
   margin: 0;
@@ -9,7 +8,21 @@
 }
 
 body {
-  background-color: vars.$white;
+  background-color: vars.$dark;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+img {
+  user-select: none;
+}
+
+::-webkit-scrollbar {
+  background-color: vars.$dark;
+  width: 0.6em;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: vars.$primary;
+  border-radius: 5px;
 }

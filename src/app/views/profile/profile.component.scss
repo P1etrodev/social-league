@@ -6,8 +6,10 @@
 
   #profile-info {
     padding-inline: 2em;
-    padding-top: 1em;
-    display: flex;
+    padding-top: 2em;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
     gap: 2em;
 
     #left {
@@ -58,7 +60,6 @@
       display: flex;
       flex-flow: column;
       gap: 1em;
-      width: 100%;
       #identity {
         text-decoration: none;
         #name {
@@ -92,85 +93,53 @@
   }
   #profile-content-selector {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    width: 80%;
-    margin-inline: auto;
-    height: 5em;
-    padding-inline: 2em;
-    padding-top: 2em;
-    gap: 5em;
+    grid-template-columns: repeat(4, 1fr);
+    height: 3em;
+    margin-top: 2em;
 
     button {
       width: 100%;
-      background-color: vars.$extra;
-      color: vars.$dark;
-      border-start-start-radius: 35px;
-      border-start-end-radius: 35px;
+      background-color: transparent;
+      color: vars.$white;
       border: none;
       cursor: pointer;
       position: relative;
-      font-weight: 600;
       font-size: 1.25em;
-      $bg: vars.$extra;
+      border-bottom: 2px solid vars.$dark;
+      font-weight: 400;
+      transition: backdrop-filter 250ms ease-in-out;
 
-      &::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        transform: translateX(calc(-100% + 1px));
-        height: 100%;
-        aspect-ratio: 1/1;
-        background-color: $bg;
-        clip-path: polygon(50% 50%, 100% 50%, 100% 100%, 50% 100%);
-        mask-image: radial-gradient(circle, transparent 99%, $bg 100%);
-        -webkit-mask-image: radial-gradient(circle, transparent 70%, $bg 71%);
-      }
-      &::after {
-        content: "";
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        transform: translateX(calc(100% - 1px));
-        height: 100%;
-        aspect-ratio: 1/1;
-        background-color: $bg;
-        clip-path: polygon(50% 50%, 0 50%, 0 100%, 50% 100%);
-        mask-image: radial-gradient(circle, transparent 99%, $bg 100%);
-        -webkit-mask-image: radial-gradient(circle, transparent 70%, $bg 71%);
+      &::backdrop {
+        background-color: vars.$dark;
       }
 
-      &.active {
-        $bg: vars.$primary;
-        background-color: $bg;
+      &:hover {
+        backdrop-filter: brightness(150%);
+      }
+      &:active {
+        font-weight: 600;
+        border-color: vars.$secondary;
+      }
 
-        &::before {
-          background-color: $bg;
-          mask-image: radial-gradient(circle, transparent 99%, $bg 100%);
-          -webkit-mask-image: radial-gradient(circle, transparent 70%, $bg 71%);
-        }
-
-        &::after {
-          background-color: $bg;
-          mask-image: radial-gradient(circle, transparent 99%, $bg 100%);
-          -webkit-mask-image: radial-gradient(circle, transparent 70%, $bg 71%);
-        }
+      &:hover {
+        backdrop-filter: brightness(150%);
       }
     }
   }
   #profile-content {
-    border-top: vars.$primary 3px solid;
+    border-top: vars.$primary 2px solid;
     background-color: vars.$dark;
+    width: 100%;
 
-    #profile-skins {
-      padding-inline: 2em;
-      padding-top: 2em;
-      padding-bottom: 1em;
+    #profile-skins,
+    #profile-skills {
+      padding: 2em;
       width: 100%;
     }
     #profile-posts {
       display: flex;
       flex-flow: column-reverse;
+      width: 100%;
       .post:not(:last-child) {
         border-top: vars.$primary 2px solid;
       }
@@ -183,6 +152,7 @@
     #profile-comments {
       display: flex;
       flex-flow: column-reverse;
+      width: 100%;
       .comment:not(:last-child) {
         border-top: vars.$primary 2px solid;
       }

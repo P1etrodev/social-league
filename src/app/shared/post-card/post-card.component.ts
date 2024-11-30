@@ -5,7 +5,6 @@ import { ChampionsService } from 'src/app/champions.service';
 import { Comment } from 'src/models/comment.model';
 import { CommentCardComponent } from '../comment-card/comment-card.component';
 import { IdentifierPipe } from '../../pipes/identifier.pipe';
-import { MiniProfileComponent } from '../mini-profile/mini-profile.component';
 import { NewCommentComponent } from './new-comment/new-comment.component';
 import { NgForOf } from '@angular/common';
 import { Post } from 'src/models/post.model';
@@ -19,7 +18,6 @@ import { SupaService } from 'src/app/supa.service';
     NgForOf,
     CommentCardComponent,
     NewCommentComponent,
-    MiniProfileComponent,
     IdentifierPipe,
   ],
   templateUrl: './post-card.component.html',

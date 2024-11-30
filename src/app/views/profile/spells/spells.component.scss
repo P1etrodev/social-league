@@ -13,7 +13,6 @@
   display: flex;
   gap: 1em;
   height: 10em;
-  overflow-y: auto;
   #left {
     img {
       width: 5em;
@@ -30,6 +29,7 @@
     }
     #description {
       color: vars.$primary;
+      overflow-y: auto;
     }
   }
 }

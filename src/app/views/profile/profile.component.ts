@@ -43,7 +43,7 @@ export class ProfileComponent implements OnInit {
   posts!: Post[];
   comments!: Comment[];
 
-  currentContent: 'posts' | 'comments' | 'skins' = 'posts';
+  currentContent: 'posts' | 'comments' | 'skins' | 'skills' = 'posts';
 
   ngOnInit() {
     const championId = this.route.snapshot.paramMap.get('championId') as string;
@@ -55,9 +55,10 @@ export class ProfileComponent implements OnInit {
         this.supaService
           .fetchPosts(this.champion.id)
           .then((posts) => (this.posts = posts));
-        this.supaService
-          .fetchComments(this.champion.id)
-          .then((comments) => (this.comments = comments));
+        this.supaService.fetchComments(this.champion.id).then((comments) => {
+          this.comments = comments;
+          console.log(comments);
+        });
       });
   }
 

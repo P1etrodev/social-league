@@ -1,27 +1,49 @@
 @defer (when champion) {
-<div class="comment">
-  <div class="header">
-    <div class="champ">
-      <a [href]="'/profile/' + comment.champion" class="icon">
+<div class="container">
+  @if (withPostUrl) {
+  <a href="/posts/{{ comment.post.id }}" class="post-url">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      class="size-6"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M6.32 2.577a49.255 49.255 0 0 1 11.36 0c1.497.174 2.57 1.46 2.57 2.93V21a.75.75 0 0 1-1.085.67L12 18.089l-7.165 3.583A.75.75 0 0 1 3.75 21V5.507c0-1.47 1.073-2.756 2.57-2.93Z"
+        clip-rule="evenodd"
+      />
+    </svg>
+
+    <span>{{ comment.post.content }}</span>
+  </a>
+  }
+  <div class="comment">
+    <div class="left">
+      <a href="/profile/{{ comment.champion }}" class="icon">
         <img
           class="icon"
           [src]="champsService.getIcon(comment.champion)"
           [alt]="comment.champion"
         />
       </a>
-      @if ( poster === comment.champion) {
-      <span class="op">OP</span>
-      }
-      <a [href]="'/profile/' + comment.champion" class="identity">
-        <span class="name">{{ comment.champion }}</span>
-        <span class="identifier">{{ champion.title | identifier }}</span>
-        <mini-profile class="mini-profile" [championId]="comment.champion" />
-      </a>
     </div>
-    <span class="created-at">{{ comment.created_at | relativeDate }}</span>
-  </div>
-  <div class="body">
-    <p class="content">{{ comment.content }}</p>
+    <div class="right">
+      <div class="body">
+        <div class="identity">
+          <a href="/profile/{{ comment.champion }}" class="name">{{
+            comment.champion
+          }}</a>
+          <a href="/profile/{{ comment.champion }}" class="identifier">{{
+            champion.title | identifier
+          }}</a>
+          <span class="created-at">{{
+            comment.created_at | relativeDate
+          }}</span>
+        </div>
+        <p class="content">{{ comment.content }}</p>
+      </div>
+    </div>
   </div>
 </div>
 }

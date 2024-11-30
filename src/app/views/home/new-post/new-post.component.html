@@ -1,4 +1,4 @@
-<form (ngSubmit)="onSubmit()">
+<div id="new-post-form">
   <textarea
     id="content"
     [formControl]="newPostContent"
@@ -6,8 +6,12 @@
   ></textarea>
   <div id="footer">
     <champion-select />
-    <button id="submit-button" type="submit" [disabled]="!newPostContent.valid">
+    <button
+      id="submit-button"
+      (click)="onSubmit()"
+      [disabled]="!newPostContent.valid"
+    >
       Publicar
     </button>
   </div>
-</form>
+</div>

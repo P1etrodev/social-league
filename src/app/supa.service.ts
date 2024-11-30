@@ -62,7 +62,7 @@ export class SupaService {
   async fetchComments(championId: string) {
     return await this.supa
       .from('comments')
-      .select('*')
+      .select('*, post:posts(id, content)')
       .eq('champion', championId)
       .order('created_at', { ascending: true })
       .then((response: any) => response.data as Comment[]);
