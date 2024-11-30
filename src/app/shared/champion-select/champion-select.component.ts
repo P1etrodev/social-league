@@ -1,13 +1,11 @@
+import { Champion, PartialChampion } from 'src/models/champion.model';
 import {
-  AfterContentChecked,
   Component,
   ElementRef,
-  OnInit,
   Renderer2,
   ViewChild,
   inject,
 } from '@angular/core';
-import { Champion, PartialChampion } from 'src/models/champion.model';
 import { NgClass, NgForOf } from '@angular/common';
 
 import { ChampionsService } from 'src/app/champions.service';
@@ -49,8 +47,6 @@ export class ChampionSelectComponent {
   get filteredChampions() {
     const rawSearch = this.search.replace(/\s/, '\\s');
     const pattern = new RegExp(`(${rawSearch})`, 'i');
-    return this.champsService.champions.filter((e) => {
-      return pattern.test(e.name);
-    });
+    return this.champsService.champions.filter((e) => pattern.test(e.name));
   }
 }
