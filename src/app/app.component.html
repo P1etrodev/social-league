@@ -8,7 +8,7 @@
       <span>Inicio</span>
     </a>
     @defer (when champsService.selectedChampion) {
-    <a class="link" [href]="'/profile/' + champsService.selectedChampion.id">
+    <a class="link" href="/profile/{{ champsService.selectedChampion.id }}">
       <img [src]="champsService.getIcon(champsService.selectedChampion.id)" />
       <span>{{ champsService.selectedChampion.name }}</span>
     </a>

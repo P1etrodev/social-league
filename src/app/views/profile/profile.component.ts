@@ -11,10 +11,10 @@ import { NgForOf } from '@angular/common';
 import { Post } from 'src/models/post.model';
 import { PostCardComponent } from '../../shared/post-card/post-card.component';
 import { SkinsComponent } from './skins/skins.component';
-import { SpellComponent } from './spell/spell.component';
 import { SpellsComponent } from './spells/spells.component';
 import { StarsComponent } from './stars/stars.component';
 import { SupaService } from 'src/app/supa.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-profile',
@@ -36,6 +36,7 @@ import { SupaService } from 'src/app/supa.service';
 export class ProfileComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private supaService = inject(SupaService);
+  private titleService = inject(Title);
   champsService = inject(ChampionsService);
 
   champion!: Champion;
@@ -50,6 +51,7 @@ export class ProfileComponent implements OnInit {
       .getFullChampion(championId)
       .then((result) => (this.champion = result))
       .then(() => {
+        this.titleService.setTitle(`${this.champion.name} | ${document.title}`);
         this.supaService
           .fetchPosts(this.champion.id)
           .then((posts) => (this.posts = posts));

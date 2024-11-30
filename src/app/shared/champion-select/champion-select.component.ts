@@ -1,5 +1,5 @@
-import { Champion, PartialChampion } from 'src/models/champion.model';
 import {
+  AfterContentChecked,
   Component,
   ElementRef,
   OnInit,
@@ -7,6 +7,7 @@ import {
   ViewChild,
   inject,
 } from '@angular/core';
+import { Champion, PartialChampion } from 'src/models/champion.model';
 import { NgClass, NgForOf } from '@angular/common';
 
 import { ChampionsService } from 'src/app/champions.service';
@@ -18,7 +19,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './champion-select.component.html',
   styleUrls: ['./champion-select.component.scss'],
 })
-export class ChampionSelectComponent implements OnInit {
+export class ChampionSelectComponent {
   private renderer = inject(Renderer2);
 
   champsService = inject(ChampionsService);
@@ -26,10 +27,6 @@ export class ChampionSelectComponent implements OnInit {
   open = false;
 
   @ViewChild('overlap') overlap!: ElementRef;
-
-  ngOnInit(): void {
-    this.champsService.initializeChampion(this.champsService.champions);
-  }
 
   selectChampion(champion: PartialChampion) {
     this.champsService.setSelectedChampion(champion);

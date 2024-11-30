@@ -29,6 +29,12 @@ export class ChampionsService {
           );
         },
       });
+    const storedChampion = localStorage.getItem('current-champion');
+    if (storedChampion) {
+      this.selectedChampionSubject.next(JSON.parse(storedChampion));
+    } else if (this.champions.length > 0) {
+      this.setSelectedChampion(this.champions[0]);
+    }
   }
 
   private parseChampionInfo(champInfo: any) {
@@ -51,7 +57,7 @@ export class ChampionsService {
   }
 
   get selectedChampion() {
-    return this.selectedChampionSubject.value as Champion;
+    return this.selectedChampionSubject.value as PartialChampion;
   }
 
   setSelectedChampion(champion: PartialChampion): void {
@@ -59,17 +65,7 @@ export class ChampionsService {
     localStorage.setItem('current-champion', JSON.stringify(champion));
   }
 
-  // Inicializa el estado desde localStorage si existe
-  initializeChampion(champions: PartialChampion[]): void {
-    const storedChampion = localStorage.getItem('current-champion');
-    if (storedChampion) {
-      this.selectedChampionSubject.next(JSON.parse(storedChampion));
-    } else if (champions.length > 0) {
-      this.setSelectedChampion(champions[0]);
-    }
-  }
-
-  getIcon(championId: string) {
+  getIcon(championId?: string) {
     return `https://ddragon.leagueoflegends.com/cdn/${this.version}/img/champion/${championId}.png`;
   }
 
