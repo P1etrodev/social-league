@@ -1,0 +1,45 @@
+@use "./variables" as vars;
+
+header {
+  position: sticky;
+  top: 0;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: vars.$dark;
+  width: 100%;
+  z-index: 1000;
+  #logo-container {
+    color: vars.$primary;
+    display: inline-flex;
+    align-items: center;
+    gap: 1em;
+    margin-inline-start: 1em;
+    text-decoration: none;
+
+    img {
+      height: 1.5em;
+    }
+
+    h1 {
+      font-family: vars.$main-font;
+      font-weight: 900;
+      font-size: 1.5em;
+    }
+  }
+  nav {
+    display: inline-flex;
+
+    a {
+      text-decoration: none;
+      padding: 1em;
+      color: vars.$primary;
+      font-weight: 900;
+      border-bottom: 2px transparent solid;
+
+      &:hover {
+        border-bottom: 2px vars.$primary solid;
+      }
+    }
+  }
+}

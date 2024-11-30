@@ -1,0 +1,102 @@
+@use "../../../styles/variables" as vars;
+
+.comment {
+  display: flex;
+  flex-flow: column;
+  background-color: vars.$dark;
+  position: relative;
+
+  &:last-child {
+    border-end-start-radius: 10px !important;
+    border-end-end-radius: 10px !important;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    align-items: center;
+    position: relative;
+
+    .champ {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      color: vars.$primary;
+      text-decoration: none;
+
+      .op {
+        color: vars.$secondary;
+        font-size: 1em;
+        font-weight: 600;
+      }
+
+      .icon {
+        height: 2em;
+        width: 2em;
+        border-radius: 50%;
+        border: 3px solid vars.$primary;
+        overflow: hidden;
+        display: flex;
+        img {
+          border: none;
+          height: 115%;
+          object-fit: cover;
+          justify-self: center;
+          align-self: center;
+        }
+      }
+
+      .identity {
+        display: flex;
+        align-items: center;
+        gap: 0.25em;
+        font-size: 1em;
+        text-decoration: none;
+        position: relative;
+        .name {
+          color: vars.$primary;
+          font-weight: 500;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+        .identifier {
+          color: vars.$light;
+          text-decoration: none !important;
+        }
+        .mini-profile {
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          opacity: 0; /* Completamente transparente */
+          visibility: hidden; /* Oculto visualmente */
+          transform: translateY(
+            10px
+          ); /* Desplazado hacia arriba para el efecto */
+          transition: opacity 200ms ease, transform 200ms ease, visibility 200ms;
+          z-index: 100;
+        }
+
+        &:hover .mini-profile {
+          opacity: 1; /* Completamente visible */
+          visibility: visible; /* Se hace visible */
+          transform: translateY(0); /* Vuelve a su posición original */
+        }
+      }
+    }
+
+    .created-at {
+      color: vars.$light;
+    }
+  }
+
+  .body {
+    padding-inline: 1em;
+    padding-bottom: 1em;
+
+    .content {
+      color: vars.$white;
+    }
+  }
+}

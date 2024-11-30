@@ -1,0 +1,197 @@
+@use "../../../styles/variables" as vars;
+
+#container {
+  display: flex;
+  flex-flow: column;
+
+  #profile-info {
+    padding-inline: 2em;
+    padding-top: 1em;
+    display: flex;
+    gap: 2em;
+
+    #left {
+      display: flex;
+      flex-flow: column;
+      position: relative;
+      gap: 1em;
+
+      #icon {
+        position: relative;
+        border: 3px solid vars.$primary;
+        &::before {
+          position: absolute;
+          left: 4px;
+          bottom: 4px;
+          width: calc(100% - 8px);
+          height: calc(25% - 4px);
+          content: "";
+          background-color: vars.$dark;
+          opacity: 0.5;
+        }
+
+        #stats {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          justify-items: center;
+          gap: 1em;
+          padding-block: 2em;
+          padding-inline: 1em;
+
+          .stat {
+            display: flex;
+            flex-flow: column;
+
+            .name {
+              font-weight: 500;
+              color: vars.$primary;
+            }
+          }
+        }
+      }
+    }
+
+    #right {
+      display: flex;
+      flex-flow: column;
+      gap: 1em;
+      width: 100%;
+      #identity {
+        text-decoration: none;
+        #name {
+          color: vars.$primary;
+          font-size: 2em;
+          font-weight: 600;
+        }
+        #identifier {
+          color: vars.$light;
+        }
+      }
+
+      #tags {
+        display: flex;
+        gap: 0.5em;
+
+        #tag {
+          background: vars.$secondary;
+          color: vars.$white;
+          padding: 0.25em;
+          border-radius: 5px;
+        }
+      }
+
+      #lore {
+        overflow-y: auto;
+        color: vars.$white;
+        height: 100%;
+      }
+    }
+  }
+  #profile-content-selector {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 80%;
+    margin-inline: auto;
+    height: 5em;
+    padding-inline: 2em;
+    padding-top: 2em;
+    gap: 5em;
+
+    button {
+      width: 100%;
+      background-color: vars.$extra;
+      color: vars.$dark;
+      border-start-start-radius: 35px;
+      border-start-end-radius: 35px;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      font-weight: 600;
+      font-size: 1.25em;
+      $bg: vars.$extra;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        transform: translateX(calc(-100% + 1px));
+        height: 100%;
+        aspect-ratio: 1/1;
+        background-color: $bg;
+        clip-path: polygon(50% 50%, 100% 50%, 100% 100%, 50% 100%);
+        mask-image: radial-gradient(circle, transparent 99%, $bg 100%);
+        -webkit-mask-image: radial-gradient(circle, transparent 70%, $bg 71%);
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        transform: translateX(calc(100% - 1px));
+        height: 100%;
+        aspect-ratio: 1/1;
+        background-color: $bg;
+        clip-path: polygon(50% 50%, 0 50%, 0 100%, 50% 100%);
+        mask-image: radial-gradient(circle, transparent 99%, $bg 100%);
+        -webkit-mask-image: radial-gradient(circle, transparent 70%, $bg 71%);
+      }
+
+      &.active {
+        $bg: vars.$primary;
+        background-color: $bg;
+
+        &::before {
+          background-color: $bg;
+          mask-image: radial-gradient(circle, transparent 99%, $bg 100%);
+          -webkit-mask-image: radial-gradient(circle, transparent 70%, $bg 71%);
+        }
+
+        &::after {
+          background-color: $bg;
+          mask-image: radial-gradient(circle, transparent 99%, $bg 100%);
+          -webkit-mask-image: radial-gradient(circle, transparent 70%, $bg 71%);
+        }
+      }
+    }
+  }
+  #profile-content {
+    border-top: vars.$primary 3px solid;
+    background-color: vars.$dark;
+
+    #profile-skins {
+      padding-inline: 2em;
+      padding-top: 2em;
+      padding-bottom: 1em;
+      width: 100%;
+    }
+    #profile-posts {
+      display: flex;
+      flex-flow: column-reverse;
+      .post:not(:last-child) {
+        border-top: vars.$primary 2px solid;
+      }
+      #empty {
+        text-align: center;
+        margin: 2em;
+        color: vars.$primary;
+      }
+    }
+    #profile-comments {
+      display: flex;
+      flex-flow: column-reverse;
+      .comment:not(:last-child) {
+        border-top: vars.$primary 2px solid;
+      }
+
+      #empty {
+        text-align: center;
+        margin: 2em;
+        color: vars.$primary;
+      }
+    }
+  }
+}

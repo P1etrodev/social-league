@@ -1,0 +1,27 @@
+@use "../../../styles/variables" as vars;
+
+#content {
+  display: flex;
+  flex-flow: column;
+  gap: 2em;
+  background-color: vars.$dark;
+  border-radius: 10px;
+
+  #posts {
+    display: flex;
+    flex-flow: column-reverse;
+    width: 100%;
+    :not(:last-child) {
+      border-top: vars.$primary 2px solid;
+    }
+  }
+}
+
+.champion {
+  display: flex;
+
+  .icon {
+    width: 5em;
+    height: 5em;
+  }
+}

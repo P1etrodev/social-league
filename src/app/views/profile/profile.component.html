@@ -1,0 +1,86 @@
+@defer (when champion) {
+<div id="container">
+  <div id="profile-info">
+    <div id="left">
+      <div id="icon">
+        <img [src]="champsService.getLoading(champion.id)" />
+        <div id="stats">
+          <div class="stat" *ngFor="let stat of champion.info | keyvalue">
+            <span class="name">{{ parseStatName(stat.key) }}:</span>
+            <stars [statName]="stat.key" [amount]="stat.value"></stars>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="right">
+      <a [href]="'/profile/' + champion.id" id="identity">
+        <p id="name">{{ champion.id }}</p>
+        <p id="identifier">
+          {{ champion.title | identifier }}
+        </p>
+      </a>
+      <div id="tags">
+        <span *ngFor="let tag of champion.tags" id="tag">{{ tag }}</span>
+      </div>
+      <div id="lore">
+        <p>{{ champion.lore }}</p>
+      </div>
+      <div id="spells">
+        <app-spells
+          [passive]="champion.passive"
+          [spells]="champion.spells"
+        ></app-spells>
+      </div>
+    </div>
+  </div>
+  <div id="profile-content-selector">
+    <button
+      (click)="currentContent = 'posts'"
+      [ngClass]="{ active: currentContent === 'posts' }"
+    >
+      Publicaciones
+    </button>
+    <button
+      (click)="currentContent = 'comments'"
+      [ngClass]="{ active: currentContent === 'comments' }"
+    >
+      Comentarios
+    </button>
+    <button
+      (click)="currentContent = 'skins'"
+      [ngClass]="{ active: currentContent === 'skins' }"
+    >
+      Skins
+    </button>
+  </div>
+  <div id="profile-content">
+    @if (this.currentContent === 'posts') {
+    <div id="profile-posts">
+      @if (!posts.length) {
+      <h1 id="empty">{{ champion.name }} aún no tiene publicaciones.</h1>
+      }
+      <post-card
+        class="post"
+        *ngFor="let post of this.posts"
+        [post]="post"
+      ></post-card>
+    </div>
+    } @else if (this.currentContent === 'skins') {
+    <div id="profile-skins">
+      <skins [champion]="champion"></skins>
+    </div>
+    } @else if (this.currentContent === 'comments') {
+    <div id="profile-comments">
+      @if (!comments.length) {
+      <h1 id="empty">{{ champion.name }} aún no ha hecho comentarios.</h1>
+      }
+      <comment-card
+        class="comment"
+        *ngFor="let comment of comments"
+        [comment]="comment"
+      ></comment-card>
+    </div>
+    }
+  </div>
+</div>
+}

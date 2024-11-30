@@ -1,0 +1,58 @@
+@use "../../../../styles/variables" as vars;
+
+form {
+  margin-inline: 1em;
+  border-radius: 10px;
+  padding: 1em;
+  background-color: vars.$extra;
+  display: flex;
+  flex-flow: column;
+  gap: 0.5em;
+
+  #footer {
+    display: flex;
+
+    :first-child {
+      color: vars.$white;
+    }
+  }
+
+  #content {
+    border: 2px solid vars.$primary;
+    border-radius: 5px;
+    outline: none;
+    background-color: vars.$dark;
+    color: vars.$white;
+    font-weight: 500;
+    font-size: 1em;
+    resize: none;
+    min-height: 8em;
+    max-height: 35em;
+    padding: 1em;
+    overflow-y: auto;
+    field-sizing: content;
+  }
+
+  #submit-button {
+    color: vars.$white;
+    background-color: vars.$dark;
+    border: vars.$primary 2px solid;
+    border-radius: 5px;
+    padding-inline: 2em;
+    padding-block: 0.75em;
+    width: fit-content;
+    margin-left: auto;
+    font-weight: 600;
+    font-size: 1em;
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+      background-color: vars.$primary;
+      color: vars.$dark;
+    }
+    &:disabled {
+      cursor: default;
+      color: vars.$light;
+    }
+  }
+}

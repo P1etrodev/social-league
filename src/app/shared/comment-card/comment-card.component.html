@@ -1,0 +1,27 @@
+@defer (when champion) {
+<div class="comment">
+  <div class="header">
+    <div class="champ">
+      <a [href]="'/profile/' + comment.champion" class="icon">
+        <img
+          class="icon"
+          [src]="champsService.getIcon(comment.champion)"
+          [alt]="comment.champion"
+        />
+      </a>
+      @if ( poster === comment.champion) {
+      <span class="op">OP</span>
+      }
+      <a [href]="'/profile/' + comment.champion" class="identity">
+        <span class="name">{{ comment.champion }}</span>
+        <span class="identifier">{{ champion.title | identifier }}</span>
+        <mini-profile class="mini-profile" [championId]="comment.champion" />
+      </a>
+    </div>
+    <span class="created-at">{{ comment.created_at | relativeDate }}</span>
+  </div>
+  <div class="body">
+    <p class="content">{{ comment.content }}</p>
+  </div>
+</div>
+}

@@ -1,0 +1,21 @@
+@use "../styles/variables" as vars;
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  img {
+    height: 2em;
+  }
+}
+
+#page-body {
+  margin: 2em;
+  padding-block: 1em;
+  width: 80%;
+  min-width: 20em;
+  max-width: 60em;
+  margin-inline: auto;
+  background-color: vars.$dark;
+  border-radius: 10px;
+}

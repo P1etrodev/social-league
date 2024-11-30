@@ -1,0 +1,35 @@
+@use "../../../../styles/variables" as vars;
+
+#spells {
+  display: flex;
+  gap: 0.8em;
+  padding-bottom: 1em;
+}
+
+#info {
+  background-color: vars.$dark;
+  border-radius: 10px;
+  width: 25em;
+  display: flex;
+  gap: 1em;
+  height: 10em;
+  overflow-y: auto;
+  #left {
+    img {
+      width: 5em;
+    }
+  }
+  #right {
+    display: flex;
+    flex-flow: column;
+    gap: 0.5em;
+    #name {
+      color: vars.$secondary;
+      font-weight: 500;
+      font-size: 1.25em;
+    }
+    #description {
+      color: vars.$primary;
+    }
+  }
+}

@@ -1,0 +1,99 @@
+@use "../../../../styles/variables" as vars;
+
+::-webkit-scrollbar {
+  height: 0.5em;
+  background-color: vars.$extra;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: vars.$primary;
+  border-radius: 5px;
+  &:hover {
+    background-color: vars.$secondary;
+  }
+}
+
+#gallery {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+
+  #wrapper {
+    position: relative;
+    border: vars.$primary 3px solid;
+
+    #slider {
+      position: relative;
+      display: flex;
+      flex-flow: row nowrap;
+      overflow-x: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      aspect-ratio: 16/9;
+
+      img {
+        flex: 1 0 100%;
+        scroll-snap-align: start;
+        object-fit: cover;
+      }
+    }
+    #button-left,
+    #button-right {
+      position: absolute;
+      height: 100%;
+      width: 3em;
+      cursor: pointer;
+      display: flex;
+      flex-flow: column;
+      justify-content: center;
+      align-items: center;
+      color: vars.$primary;
+      border: none;
+      opacity: 0;
+      transition: opacity 250ms ease-in-out;
+      svg {
+        flex-shrink: 0;
+      }
+      &:hover {
+        opacity: 1 !important;
+      }
+      &#button-left {
+        top: 0;
+        left: 0;
+        background: linear-gradient(to right, vars.$dark, transparent);
+      }
+      &#button-right {
+        top: 0;
+        right: 0;
+        background: linear-gradient(to left, vars.$dark, transparent);
+      }
+    }
+  }
+  #slider-nav {
+    position: relative;
+    display: flex;
+    border-inline: 3px solid vars.$primary;
+    height: 5em;
+    width: 100%;
+    overflow-x: auto;
+    z-index: 1;
+    background-color: vars.$primary;
+
+    button:not(#button-left, #button-right) {
+      cursor: pointer;
+      opacity: 0.5;
+      transition: opacity ease 250ms;
+      border: none;
+      display: flex;
+      aspect-ratio: 16/9;
+      background-color: transparent;
+      img {
+        height: 100%;
+      }
+      &:hover,
+      &.current {
+        opacity: 1;
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+@defer (when spells) {
+<div id="spells">
+  <spell
+    [spell]="passive"
+    [isPassive]="true"
+    (onHover)="current = $event"
+  ></spell>
+  <spell
+    *ngFor="let spell of spells; let i = index"
+    (onHover)="current = $event"
+    [index]="i"
+    [spell]="spell"
+  ></spell>
+</div>
+<div id="info">
+  <div id="right">
+    <p id="name">{{ currentName }}</p>
+    <p id="description">{{ currentDescription }}</p>
+  </div>
+</div>
+}

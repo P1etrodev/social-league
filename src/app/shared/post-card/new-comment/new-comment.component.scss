@@ -1,0 +1,51 @@
+@use "../../../../styles/variables" as vars;
+
+form {
+  border-top: 2px solid vars.$primary;
+  padding: 1em;
+  display: flex;
+  flex-flow: column;
+  gap: 0.5em;
+
+  #footer {
+    display: flex;
+
+    :first-child {
+      color: vars.$white;
+    }
+  }
+
+  #content {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    color: vars.$white;
+    font-weight: 400;
+    font-size: 1em;
+    resize: none;
+    min-height: 5em;
+    max-height: 25em;
+    padding: 0.5em;
+    overflow-y: auto;
+    field-sizing: content;
+  }
+
+  #submit-button {
+    color: vars.$white;
+    background-color: vars.$primary;
+    border: none;
+    border-radius: 5px;
+    padding-inline: 2em;
+    padding-block: 0.75em;
+    width: fit-content;
+    margin-left: auto;
+    font-weight: 500;
+    font-size: 1em;
+    cursor: pointer;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: default;
+    }
+  }
+}

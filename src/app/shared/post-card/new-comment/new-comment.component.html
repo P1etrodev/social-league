@@ -1,0 +1,17 @@
+<form (ngSubmit)="onSubmit()">
+  <textarea
+    id="content"
+    [formControl]="newCommentContent"
+    placeholder="Escribí una respuesta"
+  ></textarea>
+  <div id="footer">
+    <champion-select />
+    <button
+      id="submit-button"
+      type="submit"
+      [disabled]="!newCommentContent.valid"
+    >
+      Responder
+    </button>
+  </div>
+</form>
