@@ -71,17 +71,17 @@
     </div>
     } @else if (this.currentContent === 'comments') {
     <div id="profile-comments">
-      @defer (when comments) {
+      @if (!comments.length) {
+      <h1 id="empty">
+        {{ champion.name }} aún no respondió a ninguna publicación.
+      </h1>
+      } @defer (when comments) {
       <comment-card
         [withPostUrl]="true"
         class="comment"
         *ngFor="let comment of comments"
         [comment]="comment"
       ></comment-card>
-      } @placeholder {
-      <h1 id="empty">
-        {{ champion.name }} aún no respondió a ninguna publicación.
-      </h1>
       }
     </div>
     } @else if (currentContent === 'skills') {
