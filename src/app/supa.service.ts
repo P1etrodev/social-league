@@ -39,24 +39,19 @@ export class SupaService {
   }
 
   async fetchPosts(championId?: string) {
-    try {
-      if (championId) {
-        return await this.supa
-          .from('posts')
-          .select('*, comments(count))')
-          .eq('champion', championId)
-          .order('created_at', { ascending: true })
-          .then((response: any) => response.data as Post[]);
-      }
+    if (championId) {
       return await this.supa
         .from('posts')
         .select('*, comments(count))')
+        .eq('champion', championId)
         .order('created_at', { ascending: true })
         .then((response: any) => response.data as Post[]);
-    } catch (error) {
-      console.error('Error fetching posts:', error);
-      return [];
     }
+    return await this.supa
+      .from('posts')
+      .select('*, comments(count))')
+      .order('created_at', { ascending: true })
+      .then((response: any) => response.data as Post[]);
   }
 
   async fetchComments(championId: string) {

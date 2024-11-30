@@ -56,7 +56,7 @@
   <div id="profile-content">
     @if (this.currentContent === 'posts') {
     <div id="profile-posts">
-      @if (!posts.length) {
+      @defer (when posts) { @if (!posts.length) {
       <h1 id="empty">{{ champion.name }} aún no tiene publicaciones.</h1>
       }
       <post-card
@@ -64,6 +64,7 @@
         *ngFor="let post of this.posts"
         [post]="post"
       ></post-card>
+      }
     </div>
     } @else if (this.currentContent === 'skins') {
     <div id="profile-skins">
@@ -71,11 +72,11 @@
     </div>
     } @else if (this.currentContent === 'comments') {
     <div id="profile-comments">
-      @if (!comments.length) {
+      @defer (when comments) { @if (!comments.length) {
       <h1 id="empty">
         {{ champion.name }} aún no respondió a ninguna publicación.
       </h1>
-      } @defer (when comments) {
+      }
       <comment-card
         [withPostUrl]="true"
         class="comment"

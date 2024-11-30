@@ -57,7 +57,6 @@ export class ProfileComponent implements OnInit {
           .then((posts) => (this.posts = posts));
         this.supaService.fetchComments(this.champion.id).then((comments) => {
           this.comments = comments;
-          console.log(comments);
         });
       });
   }
