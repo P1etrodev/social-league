@@ -1,4 +1,5 @@
 <div id="champion-select" (mouseleave)="toggle(false)">
+  @defer (when currentChampion) {
   <div id="current" (click)="toggle()">
     <img
       class="icon"
@@ -20,7 +21,7 @@
       />
     </svg>
   </div>
-  @defer (when filteredChampions) {
+  } @defer (when filteredChampions) {
   <div id="overlap" #overlap>
     <input type="text" [(ngModel)]="search" placeholder="Buscar" />
     <div id="choices">
