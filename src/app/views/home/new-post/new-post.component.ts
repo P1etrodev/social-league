@@ -1,7 +1,6 @@
-import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Output, inject } from '@angular/core';
 import {
   FormControl,
-  FormGroup,
   FormsModule,
   ReactiveFormsModule,
   Validators,
