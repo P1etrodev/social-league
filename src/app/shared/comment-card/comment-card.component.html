@@ -20,7 +20,7 @@
   }
   <div class="comment">
     <div class="left">
-      <a href="/profile/{{ comment.champion }}" class="icon">
+      <a href="/champions/{{ comment.champion }}" class="icon">
         <img
           class="icon"
           [src]="champsService.getIcon(comment.champion)"
@@ -31,10 +31,10 @@
     <div class="right">
       <div class="body">
         <div class="identity">
-          <a href="/profile/{{ comment.champion }}" class="name">{{
+          <a href="/champions/{{ comment.champion }}" class="name">{{
             comment.champion
           }}</a>
-          <a href="/profile/{{ comment.champion }}" class="identifier">{{
+          <a href="/champions/{{ comment.champion }}" class="identifier">{{
             champion.title | identifier
           }}</a>
           <span class="created-at">{{

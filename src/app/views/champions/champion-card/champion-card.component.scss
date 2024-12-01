@@ -1,0 +1,30 @@
+@use "../../../../styles/variables" as vars;
+
+#champion-card {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  background-color: vars.$dark;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 500;
+  color: vars.$primary;
+  transition: transform 250ms ease-in-out;
+  border: 2px solid vars.$primary;
+
+  &:hover {
+    transform: scale(125%);
+  }
+
+  #champion-card-icon {
+    height: 100%;
+  }
+  #champion-card-name {
+    padding: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden; /* Oculta texto desbordante */
+    text-overflow: ellipsis; /* Aplica "..." al texto truncado */
+    white-space: nowrap; /* Evita saltos de línea */
+  }
+}

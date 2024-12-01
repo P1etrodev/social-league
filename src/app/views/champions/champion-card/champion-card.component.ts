@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 
+import { ChampionsService } from 'src/app/champions.service';
 import { PartialChampion } from 'src/models/champion.model';
 
 @Component({
@@ -9,5 +10,6 @@ import { PartialChampion } from 'src/models/champion.model';
   styleUrl: './champion-card.component.scss',
 })
 export class ChampionCardComponent {
+  champsService = inject(ChampionsService);
   @Input() champion!: PartialChampion;
 }

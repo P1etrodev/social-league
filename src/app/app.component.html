@@ -23,11 +23,15 @@
         <span>Inicio</span>
       </a>
       @defer (when champsService.selectedChampion) {
-      <a class="link" href="/profile/{{ champsService.selectedChampion.id }}">
+      <a class="link" href="/champions/{{ champsService.selectedChampion.id }}">
         <img [src]="champsService.getIcon(champsService.selectedChampion.id)" />
         <span>{{ champsService.selectedChampion.name }}</span>
       </a>
       }
+      <a href="/champions" class="link">
+        <img src="champion-icon.png" />
+        <span>Campeones</span>
+      </a>
     </nav>
   </div>
   <div id="main">
@@ -57,9 +61,7 @@
     <img [src]="champsService.getIcon(champsService.selectedChampion.id)" />
   </a>
   }
-  <!-- @defer (when champsService.champions) {
   <a href="/champions" class="link">
     <img src="champion-icon.png" />
   </a>
-  } -->
 </nav>

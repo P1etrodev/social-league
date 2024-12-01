@@ -2,7 +2,7 @@
 <div class="container">
   <div class="post">
     <div class="left">
-      <a href="/profile/{{ post.champion }}" class="icon">
+      <a href="/champions/{{ post.champion }}" class="icon">
         <img
           class="icon"
           [src]="champsService.getIcon(post.champion)"
@@ -13,10 +13,10 @@
     <div class="right">
       <div class="body">
         <div class="identity">
-          <a href="/profile/{{ post.champion }}" class="name">{{
+          <a href="/champions/{{ post.champion }}" class="name">{{
             post.champion
           }}</a>
-          <a href="/profile/{{ post.champion }}" class="identifier">{{
+          <a href="/champions/{{ post.champion }}" class="identifier">{{
             champion.title | identifier
           }}</a>
           <span class="created-at">{{ post.created_at | relativeDate }}</span>

@@ -11,9 +11,9 @@ nav {
   max-width: 18em;
   margin-left: auto;
 
-  // &#mobile-bar {
-  //   display: none;
-  // }
+  &#mobile-bar {
+    display: none;
+  }
 
   a {
     display: flex;
@@ -78,9 +78,9 @@ nav {
 
     #page-body {
       flex-grow: 1;
+      width: 100%;
       max-width: 33svw;
       position: relative;
-      width: 100%;
       background-color: vars.$dark;
       border-inline: vars.$primary 2px solid;
     }
@@ -103,7 +103,7 @@ nav {
   }
   #mobile-bar {
     position: sticky;
-    display: flex;
+    display: flex !important;
     flex-flow: row;
     left: 0;
     bottom: 0;
