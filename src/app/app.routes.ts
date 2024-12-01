@@ -1,3 +1,4 @@
+import { ChampionsComponent } from './views/champions/champions.component';
 import { HomeComponent } from './views/home/home.component';
 import { PostComponent } from './views/post/post.component';
 import { ProfileComponent } from './views/profile/profile.component';
@@ -10,7 +11,11 @@ export const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'profile/:championId',
+    path: 'champions',
+    component: ChampionsComponent,
+  },
+  {
+    path: 'champions/:championId',
     component: ProfileComponent,
   },
   {

@@ -97,3 +97,10 @@
     }
   }
 }
+
+@media (max-width: 1200px) {
+  #wrapper,
+  #slider-nav {
+    border: none !important;
+  }
+}

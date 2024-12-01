@@ -12,7 +12,9 @@
 
 #champion-select {
   position: relative;
-  width: 15em;
+  display: flex;
+  flex: 1 0 100%;
+  max-width: 15em;
 
   #current {
     cursor: pointer;
@@ -26,10 +28,12 @@
     justify-content: left;
     padding: 0.5em;
     position: relative;
+    width: 100%;
+
     #arrow {
-      position: absolute;
-      right: 0.25em;
-      height: 1.75em;
+      flex-shrink: 0;
+      height: 2em;
+      margin-left: auto;
     }
 
     p {

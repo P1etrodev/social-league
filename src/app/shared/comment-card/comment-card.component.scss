@@ -103,6 +103,10 @@
 
     .body {
       color: vars.$white;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      white-space: normal;
+      max-width: 100%;
     }
 
     .footer {

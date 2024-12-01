@@ -21,7 +21,6 @@ export class ChampionSelectComponent {
   private renderer = inject(Renderer2);
 
   champsService = inject(ChampionsService);
-  search = '';
   open = false;
 
   @ViewChild('overlap') overlap!: ElementRef;
@@ -42,11 +41,5 @@ export class ChampionSelectComponent {
 
   get currentChampion() {
     return this.champsService.selectedChampion as Champion;
-  }
-
-  get filteredChampions() {
-    const rawSearch = this.search.replace(/\s/, '\\s');
-    const pattern = new RegExp(`(${rawSearch})`, 'i');
-    return this.champsService.champions.filter((e) => pattern.test(e.name));
   }
 }

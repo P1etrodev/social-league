@@ -1,5 +1,61 @@
 @use "../styles/variables" as vars;
 
+nav {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-flow: column;
+  background-color: vars.$dark;
+  height: fit-content;
+  width: 100%;
+  max-width: 18em;
+  margin-left: auto;
+
+  // &#mobile-bar {
+  //   display: none;
+  // }
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    text-decoration: none;
+    padding-block: 0.5em;
+    padding-inline: 1em;
+    color: vars.$primary;
+    font-weight: 900;
+    font-size: 1.25em;
+    border-bottom: 2px transparent solid;
+    img,
+    svg {
+      height: 1.5em;
+      flex-shrink: 0;
+    }
+
+    &:hover {
+      backdrop-filter: brightness(150%);
+    }
+  }
+  #logo-container {
+    color: vars.$primary;
+    display: inline-flex;
+    align-items: center;
+    gap: 1em;
+    text-decoration: none;
+    margin-bottom: 1em;
+
+    img {
+      height: 2em;
+    }
+
+    h1 {
+      font-family: vars.$main-font;
+      font-weight: 900;
+      font-size: 1.5em;
+    }
+  }
+}
+
 #content {
   display: flex;
   flex-flow: row;
@@ -11,58 +67,6 @@
     flex-grow: 1;
     max-width: 33svw;
     user-select: none;
-
-    #nav-bar {
-      position: sticky;
-      top: 0;
-      display: flex;
-      flex-flow: column;
-      background-color: vars.$dark;
-      height: fit-content;
-      width: 100%;
-      max-width: 18em;
-      margin-left: auto;
-
-      a {
-        display: flex;
-        align-items: center;
-        gap: 0.5em;
-        text-decoration: none;
-        padding-block: 0.5em;
-        padding-inline: 1em;
-        color: vars.$primary;
-        font-weight: 900;
-        font-size: 1.25em;
-        border-bottom: 2px transparent solid;
-        img,
-        svg {
-          height: 1.5em;
-          flex-shrink: 0;
-        }
-
-        &:hover {
-          backdrop-filter: brightness(150%);
-        }
-      }
-      #logo-container {
-        color: vars.$primary;
-        display: inline-flex;
-        align-items: center;
-        gap: 1em;
-        text-decoration: none;
-        margin-bottom: 1em;
-
-        img {
-          height: 2em;
-        }
-
-        h1 {
-          font-family: vars.$main-font;
-          font-weight: 900;
-          font-size: 1.5em;
-        }
-      }
-    }
   }
 
   #main {
@@ -79,6 +83,38 @@
       width: 100%;
       background-color: vars.$dark;
       border-inline: vars.$primary 2px solid;
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  #content {
+    position: relative;
+    #side {
+      display: none;
+    }
+    #main {
+      position: relative;
+      #page-body {
+        max-width: 100svw;
+        border-inline: none;
+      }
+    }
+  }
+  #mobile-bar {
+    position: sticky;
+    display: flex;
+    flex-flow: row;
+    left: 0;
+    bottom: 0;
+    border-top: 2px solid vars.$primary;
+    background-color: vars.$dark;
+    min-width: 100svw;
+    height: 4em;
+    z-index: 1000;
+    a {
+      width: 100%;
+      justify-content: center;
     }
   }
 }

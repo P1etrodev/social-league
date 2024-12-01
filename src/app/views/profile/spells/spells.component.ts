@@ -32,6 +32,6 @@ export class SpellsComponent implements OnInit {
   }
 
   get currentDescription() {
-    return this.current.spell.description.replace(/<\/?\w+>/g, '');
+    return this.current.spell.description.replace(/<\/?.+>/g, '');
   }
 }

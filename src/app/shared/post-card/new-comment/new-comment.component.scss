@@ -1,19 +1,12 @@
 @use "../../../../styles/variables" as vars;
 
-form {
+#new-comment-form {
   border-top: 2px solid vars.$primary;
   padding: 1em;
   display: flex;
   flex-flow: column;
   gap: 0.5em;
-
-  #footer {
-    display: flex;
-
-    :first-child {
-      color: vars.$white;
-    }
-  }
+  width: 100%;
 
   #content {
     border: none;
@@ -30,22 +23,35 @@ form {
     field-sizing: content;
   }
 
-  #submit-button {
-    color: vars.$white;
-    background-color: vars.$primary;
-    border: none;
-    border-radius: 5px;
-    padding-inline: 2em;
-    padding-block: 0.75em;
-    width: fit-content;
-    margin-left: auto;
-    font-weight: 500;
-    font-size: 1em;
-    cursor: pointer;
+  #footer {
+    display: flex;
+    gap: 1em;
+    justify-content: space-between;
+    width: 100%;
 
-    &:disabled {
-      opacity: 0.5;
-      cursor: default;
+    :first-child {
+      color: vars.$white;
+    }
+
+    #champion-select {
+      width: 100%;
+    }
+
+    #submit-button {
+      color: vars.$white;
+      background-color: vars.$primary;
+      border: none;
+      border-radius: 5px;
+      padding-inline: 2em;
+      width: fit-content;
+      font-weight: 500;
+      font-size: 1em;
+      cursor: pointer;
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: default;
+      }
     }
   }
 }

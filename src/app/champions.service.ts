@@ -10,8 +10,9 @@ import { HttpClient } from '@angular/common/http';
 export class ChampionsService {
   private client = inject(HttpClient);
   private version = '14.23.1';
-  champions = new Array<PartialChampion>();
 
+  search = '';
+  champions = new Array<PartialChampion>();
   selectedChampion!: PartialChampion;
 
   constructor() {
@@ -79,5 +80,11 @@ export class ChampionsService {
       `https://ddragon.leagueoflegends.com/cdn/${this.version}/img/spell/` +
       skill
     );
+  }
+
+  get filteredChampions() {
+    const rawSearch = this.search.replace(/\s/, '\\s');
+    const pattern = new RegExp(`(${rawSearch})`, 'i');
+    return this.champions.filter((e) => pattern.test(e.name));
   }
 }

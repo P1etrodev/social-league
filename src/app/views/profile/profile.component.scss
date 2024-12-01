@@ -116,7 +116,7 @@
       &:hover {
         backdrop-filter: brightness(150%);
       }
-      &:active {
+      &.active {
         font-weight: 600;
         border-color: vars.$secondary;
       }
@@ -162,6 +162,31 @@
         margin: 2em;
         color: vars.$primary;
       }
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  #container {
+    #profile-info {
+      display: flex;
+      flex-flow: column;
+    }
+    #profile-content-selector {
+      display: flex;
+      width: fit-content;
+      max-width: 100%;
+      overflow-x: auto;
+      height: 4em;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      button {
+        padding-inline: 1em;
+      }
+    }
+    #profile-skins {
+      padding: 0 !important;
     }
   }
 }
