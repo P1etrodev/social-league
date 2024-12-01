@@ -32,6 +32,20 @@ nav {
       flex-shrink: 0;
     }
 
+    .icon {
+      height: 1.3em;
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      img {
+        border: none;
+        height: 115%;
+        object-fit: cover;
+        justify-self: center;
+        align-self: center;
+      }
+    }
+
     &:hover {
       backdrop-filter: brightness(150%);
     }

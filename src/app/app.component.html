@@ -24,7 +24,11 @@
       </a>
       @defer (when champsService.selectedChampion) {
       <a class="link" href="/champions/{{ champsService.selectedChampion.id }}">
-        <img [src]="champsService.getIcon(champsService.selectedChampion.id)" />
+        <div class="icon">
+          <img
+            [src]="champsService.getIcon(champsService.selectedChampion.id)"
+          />
+        </div>
         <span>{{ champsService.selectedChampion.name }}</span>
       </a>
       }
@@ -58,7 +62,9 @@
   </a>
   @defer (when champsService.selectedChampion) {
   <a class="link" href="/champions/{{ champsService.selectedChampion.id }}">
-    <img [src]="champsService.getIcon(champsService.selectedChampion.id)" />
+    <div class="icon">
+      <img [src]="champsService.getIcon(champsService.selectedChampion.id)" />
+    </div>
   </a>
   }
   <a href="/champions" class="link">

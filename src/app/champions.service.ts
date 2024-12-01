@@ -87,4 +87,10 @@ export class ChampionsService {
     const pattern = new RegExp(`(${rawSearch})`, 'i');
     return this.champions.filter((e) => pattern.test(e.name));
   }
+
+  get championClasses() {
+    const classes = this.champions.flatMap((e) => e.tags);
+    const uniqueClasses = new Set(classes);
+    return Array.from(uniqueClasses);
+  }
 }

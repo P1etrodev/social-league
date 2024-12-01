@@ -7,6 +7,8 @@
   gap: 1em;
   width: 100%;
   #search {
+    position: sticky;
+    top: 0;
     width: 100%;
     height: 3em;
     background-color: vars.$dark;
@@ -15,6 +17,7 @@
     padding-inline: 1em;
     font-size: 1em;
     outline: none;
+    z-index: 100;
     ::placeholder {
       color: vars.$light;
     }
@@ -26,7 +29,13 @@
     width: 100%;
 
     .champion-card {
-      width: calc((100% - 3em) / 4);
+      width: calc((100% - 4em) / 5);
     }
+  }
+}
+
+@media (max-width: 600px) {
+  .champion-card {
+    width: calc((100% - 3em) / 4) !important;
   }
 }

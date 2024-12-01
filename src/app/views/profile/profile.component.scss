@@ -3,6 +3,7 @@
 #container {
   display: flex;
   flex-flow: column;
+  width: 100%;
 
   #profile-info {
     padding-inline: 2em;
@@ -17,19 +18,14 @@
       flex-flow: column;
       position: relative;
       gap: 1em;
+      width: 100%;
 
       #icon {
         position: relative;
         border: 3px solid vars.$primary;
-        &::before {
-          position: absolute;
-          left: 4px;
-          bottom: 4px;
-          width: calc(100% - 8px);
-          height: calc(25% - 4px);
-          content: "";
-          background-color: vars.$dark;
-          opacity: 0.5;
+        width: 100%;
+        img {
+          width: 100%;
         }
 
         img {
@@ -46,6 +42,13 @@
           gap: 1em;
           padding-block: 2em;
           padding-inline: 1em;
+          border: none;
+          background-color: rgba(vars.$dark, 0.5);
+          text-align: left;
+
+          &::backdrop {
+            background-color: vars.$dark;
+          }
 
           .stat {
             display: flex;
@@ -109,9 +112,8 @@
       cursor: pointer;
       position: relative;
       font-size: 1.25em;
-      border-bottom: 2px solid vars.$dark;
       font-weight: 400;
-      transition: backdrop-filter 250ms ease-in-out;
+      transition: backdrop-filter 250ms ease-in-out, color 250ms ease-in-out;
 
       &::backdrop {
         background-color: vars.$dark;
@@ -121,8 +123,7 @@
         backdrop-filter: brightness(150%);
       }
       &.active {
-        font-weight: 600;
-        border-color: vars.$secondary;
+        color: vars.$primary;
       }
 
       &:hover {

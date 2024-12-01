@@ -4,12 +4,12 @@
     <div id="left">
       <div id="icon">
         <img [src]="champsService.getLoading(champion.id)" />
-        <div id="stats">
+        <button id="stats">
           <div class="stat" *ngFor="let stat of champion.info | keyvalue">
             <span class="name">{{ parseStatName(stat.key) }}:</span>
             <stars [statName]="stat.key" [amount]="stat.value"></stars>
           </div>
-        </div>
+        </button>
       </div>
     </div>
     <div id="right">

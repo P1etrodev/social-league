@@ -9,12 +9,13 @@
   text-decoration: none;
   text-align: center;
   font-weight: 500;
-  color: vars.$primary;
-  transition: transform 250ms ease-in-out;
-  border: 2px solid vars.$primary;
+  color: vars.$white;
+  transition: border 150ms ease-in-out, border 150ms ease-in-out;
+  border: 2px solid vars.$dark;
 
   &:hover {
-    transform: scale(125%);
+    color: vars.$primary;
+    border-color: vars.$primary;
   }
 
   #champion-card-icon {
@@ -23,8 +24,8 @@
   #champion-card-name {
     padding: 0.5rem;
     white-space: nowrap;
-    overflow: hidden; /* Oculta texto desbordante */
-    text-overflow: ellipsis; /* Aplica "..." al texto truncado */
-    white-space: nowrap; /* Evita saltos de línea */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
