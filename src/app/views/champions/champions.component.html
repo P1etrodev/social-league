@@ -1,0 +1,8 @@
+@defer (when champsService.champions) {
+<div id="champions">
+  <champion-card
+    *ngFor="let champion of champsService.filteredChampions"
+    [champion]="champion"
+  ></champion-card>
+</div>
+}
