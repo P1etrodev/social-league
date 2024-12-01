@@ -20,7 +20,9 @@
         </p>
       </a>
       <div id="tags">
-        <span *ngFor="let tag of champion.tags" id="tag">{{ tag }}</span>
+        <span *ngFor="let tag of champion.tags" id="tag">{{
+          tag | tagAsClass
+        }}</span>
       </div>
       <div id="lore">
         <p>{{ champion.lore }}</p>

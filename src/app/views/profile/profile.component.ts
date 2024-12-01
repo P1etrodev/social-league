@@ -14,6 +14,7 @@ import { SkinsComponent } from './skins/skins.component';
 import { SpellsComponent } from './spells/spells.component';
 import { StarsComponent } from './stars/stars.component';
 import { SupaService } from 'src/app/supa.service';
+import { TagAsClass } from '../../pipes/tag-as-class.pipe';
 import { Title } from '@angular/platform-browser';
 
 @Component({
@@ -29,6 +30,7 @@ import { Title } from '@angular/platform-browser';
     PostCardComponent,
     CommentCardComponent,
     SpellsComponent,
+    TagAsClass,
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
