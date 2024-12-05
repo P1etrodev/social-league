@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 
 import { ChampionCardComponent } from './champion-card/champion-card.component';
-import { ChampionsService } from 'src/app/champions.service';
+import { ChampionsService } from 'src/app/services/champions.service';
 import { FormsModule } from '@angular/forms';
 import { NgForOf } from '@angular/common';
 

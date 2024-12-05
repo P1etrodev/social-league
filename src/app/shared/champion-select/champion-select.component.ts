@@ -2,13 +2,14 @@ import { Champion, PartialChampion } from 'src/models/champion.model';
 import {
   Component,
   ElementRef,
+  OnInit,
   Renderer2,
   ViewChild,
   inject,
 } from '@angular/core';
 import { NgClass, NgForOf } from '@angular/common';
 
-import { ChampionsService } from 'src/app/champions.service';
+import { ChampionsService } from 'src/app/services/champions.service';
 import { FormsModule } from '@angular/forms';
 
 @Component({

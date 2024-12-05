@@ -1,22 +1,22 @@
-@defer (when champion) {
+@defer (when champion && post) {
 <div class="container">
   <div class="post">
     <div class="left">
-      <a href="/champions/{{ post.champion }}" class="icon">
+      <a href="/champions/{{ post.champion_id }}" class="icon">
         <img
           class="icon"
-          [src]="champsService.getIcon(post.champion)"
-          [alt]="post.champion"
+          [src]="champsService.getIcon(post.champion_id)"
+          [alt]="post.champion_id"
         />
       </a>
     </div>
     <div class="right">
       <div class="body">
         <div class="identity">
-          <a href="/champions/{{ post.champion }}" class="name">{{
-            post.champion
+          <a href="/champions/{{ post.champion_id }}" class="name">{{
+            post.champion_id
           }}</a>
-          <a href="/champions/{{ post.champion }}" class="identifier">{{
+          <a href="/champions/{{ post.champion_id }}" class="identifier">{{
             champion.title | identifier
           }}</a>
           <span class="created-at">{{ post.created_at | relativeDate }}</span>
@@ -34,26 +34,26 @@
               />
             </svg>
             <span>
-              {{ post.comments[0].count }}
+              {{ post.responses_count[0].count }}
             </span>
           </a>
         </div>
       </div>
     </div>
   </div>
-  @if (showComments) {
+  @defer (when showComments) {
   <div id="comments">
-    <comment-card
+    <post-card
+      *ngFor="let response of responses"
       class="comment"
-      [poster]="post.champion"
-      *ngFor="let comment of comments"
-      [comment]="comment"
+      [poster]="post.champion_id"
+      [post]="response"
     />
-    <new-comment
-      (onCommentAdded)="onCommentAdded($event)"
-      [postId]="post.id"
-    ></new-comment>
   </div>
+  <new-response
+    (onResponseAdded)="onResponseAdded($event)"
+    [postId]="post.id"
+  ></new-response>
   }
 </div>
 }

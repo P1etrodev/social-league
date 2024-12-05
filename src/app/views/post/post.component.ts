@@ -3,7 +3,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Post } from 'src/models/post.model';
 import { PostCardComponent } from '../../shared/post-card/post-card.component';
-import { SupaService } from 'src/app/supa.service';
+import { SupaService } from 'src/app/services/supa.service';
 
 @Component({
   selector: 'app-post',

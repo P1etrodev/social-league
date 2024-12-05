@@ -8,8 +8,8 @@ import {
 import { NewPost, Post } from 'src/models/post.model';
 
 import { ChampionSelectComponent } from 'src/app/shared/champion-select/champion-select.component';
-import { ChampionsService } from 'src/app/champions.service';
-import { SupaService } from 'src/app/supa.service';
+import { ChampionsService } from 'src/app/services/champions.service';
+import { SupaService } from 'src/app/services/supa.service';
 
 @Component({
   selector: 'new-post',
@@ -38,7 +38,7 @@ export class NewPostComponent {
     if (this.newPostContent.valid) {
       const newPost: NewPost = {
         created_at: formattedDate,
-        champion: this.champsService.selectedChampion?.id as string,
+        champion_id: this.champsService.selectedChampion?.id as string,
         content: this.newPostContent.value as string,
       };
       this.supaService

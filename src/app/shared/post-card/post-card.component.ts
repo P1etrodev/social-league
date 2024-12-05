@@ -1,24 +1,23 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
 
 import { Champion } from 'src/models/champion.model';
-import { ChampionsService } from 'src/app/champions.service';
-import { Comment } from 'src/models/comment.model';
-import { CommentCardComponent } from '../comment-card/comment-card.component';
+import { ChampionsService } from 'src/app/services/champions.service';
 import { IdentifierPipe } from '../../pipes/identifier.pipe';
-import { NewCommentComponent } from './new-comment/new-comment.component';
+import { NewQuoteComponent } from './new-quote/new-quote.component';
+import { NewResponseComponent } from './new-response/new-response.component';
 import { NgForOf } from '@angular/common';
 import { Post } from 'src/models/post.model';
 import { RelativeDatePipe } from 'src/app/pipes/relative-date.pipe';
-import { SupaService } from 'src/app/supa.service';
+import { SupaService } from 'src/app/services/supa.service';
 
 @Component({
   selector: 'post-card',
   imports: [
     RelativeDatePipe,
     NgForOf,
-    CommentCardComponent,
-    NewCommentComponent,
+    NewResponseComponent,
     IdentifierPipe,
+    NewQuoteComponent,
   ],
   templateUrl: './post-card.component.html',
   styleUrl: './post-card.component.scss',
@@ -28,23 +27,24 @@ export class PostCardComponent implements OnInit {
   champsService = inject(ChampionsService);
 
   @Input() showComments = false;
+  @Input() poster!: string;
   @Input() post!: Post;
   champion!: Champion;
-  comments = new Array<Comment>();
+  responses = new Array<Post>();
 
   ngOnInit() {
     this.champsService
-      .getFullChampion(this.post.champion)
+      .fetchFullChampion(this.post.champion_id)
       .then((result) => (this.champion = result));
 
     if (this.showComments) {
       this.supaService
-        .fetchPostComments(this.post.id)
-        .then((comments) => (this.comments = comments));
+        .fetchResponses(this.post.id, 'post')
+        .then((res) => (this.responses = res.responses));
     }
   }
 
-  onCommentAdded(comment: Comment) {
-    this.comments.push(comment);
+  onResponseAdded(response: Post) {
+    this.responses.push(response);
   }
 }

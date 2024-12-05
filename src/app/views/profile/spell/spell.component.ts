@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 
-import { ChampionsService } from 'src/app/champions.service';
+import { ChampionsService } from 'src/app/services/champions.service';
 import { Spell } from 'src/models/champion.model';
 
 @Component({
@@ -14,15 +14,18 @@ export class SpellComponent {
 
   @Input() index!: number;
   @Input() spell!: Spell;
-  @Input() isPassive = false;
+  @Input() type: 'passive' | 'skill' = 'skill';
 
-  @Output() onHover = new EventEmitter<{ spell: Spell; isPassive: boolean }>();
+  @Output() onHover = new EventEmitter<{
+    spell: Spell;
+    type: 'passive' | 'skill';
+  }>();
 
   hover() {
-    this.onHover.emit({ spell: this.spell, isPassive: this.isPassive });
+    this.onHover.emit({ spell: this.spell, type: this.type });
   }
 
   get image() {
-    return this.champsService.getSkill(this.spell.image.full, this.isPassive);
+    return this.champsService.getSkill(this.spell.image.full, this.type);
   }
 }

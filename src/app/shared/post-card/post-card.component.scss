@@ -2,6 +2,9 @@
 
 .container {
   background-color: vars.$dark;
+  overflow: hidden;
+  border-radius: 10px;
+
   .post {
     display: flex;
     flex-flow: row;
@@ -9,6 +12,7 @@
     gap: 0.5em;
     padding: 1em;
     font-size: 1rem !important;
+
     .left {
       display: flex;
       flex-flow: column;
@@ -110,8 +114,28 @@
   #comments {
     display: flex;
     flex-flow: column;
+    padding: 1em;
+    gap: 1em;
+
     .comment {
-      border-top: vars.$primary 2px solid;
+      position: relative;
+      left: 2.75em;
+      width: calc(100% - 2.75em);
+      border: vars.$primary 2px solid;
+      border-radius: 10px;
+      &::before {
+        position: absolute;
+        top: -4em;
+        left: 0;
+        transform: translateX(-100%);
+        content: "";
+        width: 1.5em;
+        height: calc(100% + 1.6em);
+        border-width: 0 0 2px 2px;
+        border-style: solid;
+        border-color: vars.$primary;
+        border-end-start-radius: 10px;
+      }
     }
   }
 }

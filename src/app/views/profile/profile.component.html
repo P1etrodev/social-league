@@ -37,8 +37,8 @@
       Publicaciones
     </button>
     <button
-      (click)="currentContent = 'comments'"
-      [ngClass]="{ active: currentContent === 'comments' }"
+      (click)="currentContent = 'responses'"
+      [ngClass]="{ active: currentContent === 'responses' }"
     >
       Respuestas
     </button>
@@ -72,19 +72,18 @@
     <div id="profile-skins">
       <skins [champion]="champion"></skins>
     </div>
-    } @else if (this.currentContent === 'comments') {
-    <div id="profile-comments">
-      @defer (when comments) { @if (!comments.length) {
+    } @else if (this.currentContent === 'responses') {
+    <div id="profile-responses">
+      @defer (when responses) { @if (!responses.length) {
       <h1 id="empty">
         {{ champion.name }} aún no respondió a ninguna publicación.
       </h1>
       }
-      <comment-card
-        [withPostUrl]="true"
+      <post-card
         class="comment"
-        *ngFor="let comment of comments"
-        [comment]="comment"
-      ></comment-card>
+        *ngFor="let response of responses"
+        [post]="response"
+      ></post-card>
       }
     </div>
     } @else if (currentContent === 'skills') {

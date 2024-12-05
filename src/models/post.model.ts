@@ -1,9 +1,23 @@
 export type Post = {
   id: string;
   created_at: string;
-  champion: string;
+  champion_id: string;
+  response_of?: string;
+  repost_of?: string;
+  quote_of?: string;
   content: string;
-  comments: { count: number }[];
+  responses_count: { count: number }[];
+  quotes_count: { count: number }[];
 };
 
-export type NewPost = Omit<Post, 'id' | 'comments'>;
+export type NewPost = Pick<Post, 'created_at' | 'champion_id' | 'content'>;
+
+export type NewResponse = Pick<
+  Post,
+  'created_at' | 'champion_id' | 'content' | 'response_of'
+>;
+
+export type NewQuote = Pick<
+  Post,
+  'created_at' | 'champion_id' | 'content' | 'quote_of'
+>;

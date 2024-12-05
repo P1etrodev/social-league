@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
 
-import { ChampionsService } from 'src/app/champions.service';
+import { ChampionsService } from 'src/app/services/champions.service';
 import { NgForOf } from '@angular/common';
 import { Spell } from 'src/models/champion.model';
 import { SpellComponent } from '../spell/spell.component';
@@ -17,17 +17,18 @@ export class SpellsComponent implements OnInit {
   @Input() passive!: Spell;
   @Input() spells!: Spell[];
 
-  current!: { spell: Spell; isPassive: boolean };
+  current!: { spell: Spell; type: 'passive' | 'skill' };
 
   ngOnInit(): void {
-    this.current = { spell: this.passive, isPassive: true };
+    this.current = { spell: this.passive, type: 'passive' };
   }
 
   get currentName() {
     const prefixes = ['Q', 'W', 'E', 'R'];
-    const prefix = !this.current.isPassive
-      ? prefixes[this.spells.indexOf(this.current.spell)]
-      : 'Pasiva';
+    const prefix =
+      this.current.type === 'passive'
+        ? 'Pasiva'
+        : prefixes[this.spells.indexOf(this.current.spell)];
     return `${this.current.spell.name} (${prefix})`;
   }
 

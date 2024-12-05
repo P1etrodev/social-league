@@ -1,0 +1,19 @@
+<dialog id="container" open>
+  <div id="new-quote-form">
+    <textarea
+      id="content"
+      [formControl]="newQuoteContent"
+      placeholder="Escribí una respuesta"
+    ></textarea>
+    <div id="footer">
+      <champion-select id="champion-select" />
+      <button
+        id="submit-button"
+        (click)="onSubmit()"
+        [disabled]="!newQuoteContent.valid"
+      >
+        Responder
+      </button>
+    </div>
+  </div>
+</dialog>

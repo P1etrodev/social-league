@@ -1,6 +1,6 @@
 import { Component, Input, inject } from '@angular/core';
 
-import { ChampionsService } from 'src/app/champions.service';
+import { ChampionsService } from 'src/app/services/champions.service';
 import { PartialChampion } from 'src/models/champion.model';
 
 @Component({
