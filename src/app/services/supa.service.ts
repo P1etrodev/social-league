@@ -8,7 +8,6 @@ import { CacheService } from './cache.service';
   providedIn: 'root',
 })
 export class SupaService {
-  private cacheService = inject(CacheService);
   private supa: SupabaseClient;
   private postsTableName = 'posts_v2';
   private postColumns = `*,

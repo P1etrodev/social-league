@@ -14,11 +14,12 @@ export class SpellComponent {
 
   @Input() index!: number;
   @Input() spell!: Spell;
-  @Input() type: 'passive' | 'skill' = 'skill';
+  @Input() type: 'passive' | 'spell' = 'spell';
+  @Input() championId!: string;
 
   @Output() onHover = new EventEmitter<{
     spell: Spell;
-    type: 'passive' | 'skill';
+    type: 'passive' | 'spell';
   }>();
 
   hover() {
@@ -26,6 +27,10 @@ export class SpellComponent {
   }
 
   get image() {
-    return this.champsService.getSkill(this.spell.image.full, this.type);
+    return this.champsService.getSpell(
+      this.championId,
+      this.type,
+      this.spell.image.full
+    );
   }
 }

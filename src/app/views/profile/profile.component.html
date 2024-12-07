@@ -89,6 +89,7 @@
     } @else if (currentContent === 'skills') {
     <div id="profile-skills">
       <app-spells
+        [championId]="champion.id"
         [passive]="champion.passive"
         [spells]="champion.spells"
       ></app-spells>

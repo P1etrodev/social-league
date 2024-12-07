@@ -127,10 +127,10 @@ export class ChampionsService {
     return url;
   }
 
-  getSkill(
+  getSpell(
     championId: string,
-    skill: string,
-    type: 'skill' | 'passive' = 'skill'
+    type: 'spell' | 'passive' = 'spell',
+    skill: string
   ) {
     const cacheKeys = ['assets', championId, 'skillIcons', skill];
     const cachedUrl = this.cacheService.get(cacheKeys);

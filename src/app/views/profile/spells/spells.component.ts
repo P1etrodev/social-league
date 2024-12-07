@@ -16,8 +16,9 @@ export class SpellsComponent implements OnInit {
 
   @Input() passive!: Spell;
   @Input() spells!: Spell[];
+  @Input() championId!: string;
 
-  current!: { spell: Spell; type: 'passive' | 'skill' };
+  current!: { spell: Spell; type: 'passive' | 'spell' };
 
   ngOnInit(): void {
     this.current = { spell: this.passive, type: 'passive' };

@@ -32,13 +32,15 @@
           <span class="created-at">{{ post.created_at | relativeDate }}</span>
         </div>
         <p class="content">{{ post.content }}</p>
-        @defer(when showQuotedPost && quotedPost) {
-        <post-card
-          id="quotes-to"
-          [isQuote]="true"
-          [showRespondsTo]="false"
-          [post]="quotedPost"
-        ></post-card>
+        @defer(when showQuotedPost && quotedPost && !isQuote) {
+        <a id="quote-url" href="/post/{{ quotedPost.id }}">
+          <post-card
+            id="quotes-to"
+            [isQuote]="true"
+            [showRespondsTo]="false"
+            [post]="quotedPost"
+          ></post-card
+        ></a>
         }
       </div>
       @if (!isQuote) {
