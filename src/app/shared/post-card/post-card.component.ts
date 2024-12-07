@@ -70,4 +70,9 @@ export class PostCardComponent implements OnInit {
   onResponseAdded(response: Post) {
     this.responses.push(response);
   }
+
+  toggleShowQuoteActions() {
+    this.showQuoteActions = !this.showQuoteActions;
+    setTimeout(() => (this.showQuoteActions = false), 2000);
+  }
 }
