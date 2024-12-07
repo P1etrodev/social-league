@@ -21,7 +21,7 @@
       </a>
     </div>
     <div class="right">
-      <div class="body" (click)="showQuoteActions = false">
+      <div class="body">
         <div class="identity">
           <a href="/champions/{{ post.champion_id }}" class="name">{{
             post.champion_id
@@ -56,7 +56,7 @@
             </svg>
             <span>{{ post.responses_count[0].count }}</span>
           </a>
-          <button (click)="showQuoteActions = !showQuoteActions">
+          <button (click)="toggleShowQuoteActions()">
             <svg viewBox="0 0 512 512" fill="currentColor">
               <path
                 fill-rule="evenodd"
@@ -66,7 +66,7 @@
             </svg>
             <span>{{ post.quotes_count[0].count }}</span>
             @if (showQuoteActions) {
-            <div id="quote-actions" (mouseleave)="showQuoteActions = false">
+            <div id="quote-actions" (mouseleave)="toggleShowQuoteActions()">
               <button (click)="showNewQuoteForm = true">Citar</button>
               <a href="/post/{{ post.id }}/quotes">Ver citas</a>
             </div>
