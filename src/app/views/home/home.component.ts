@@ -17,10 +17,15 @@ export class HomeComponent implements OnInit {
   posts!: Post[];
 
   ngOnInit(): void {
-    this.supaService.fetchPosts().then((res) => (this.posts = res.posts));
+    this.retrievePosts();
   }
 
   onPostAdded(post: Post) {
     this.posts.push(post);
+  }
+
+  retrievePosts() {
+    this.supaService.fetchPosts().then((res) => (this.posts = res.posts));
+    this.supaService.newPosts = 0;
   }
 }

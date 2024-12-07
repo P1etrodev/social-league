@@ -6,6 +6,15 @@
   background-color: vars.$dark;
   border-radius: 10px;
 
+  #retrieve-posts-button {
+    background-color: vars.$primary;
+    padding: 1em;
+    border: none;
+    font-weight: 600;
+    font-size: 1em;
+    cursor: pointer;
+  }
+
   #posts {
     display: flex;
     flex-flow: column-reverse;

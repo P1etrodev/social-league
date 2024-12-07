@@ -23,19 +23,35 @@ import { SupaService } from 'src/app/services/supa.service';
   styleUrl: './post-card.component.scss',
 })
 export class PostCardComponent implements OnInit {
-  private supaService = inject(SupaService);
+  supaService = inject(SupaService);
   champsService = inject(ChampionsService);
 
   @Input() showComments = false;
+  @Input() showRespondsTo = true;
+  @Input() showQuoting = true;
   @Input() poster!: string;
   @Input() post!: Post;
   champion!: Champion;
+  respondsTo!: Post;
+  quoting!: Post;
   responses = new Array<Post>();
 
   ngOnInit() {
     this.champsService
       .fetchFullChampion(this.post.champion_id)
       .then((result) => (this.champion = result));
+
+    if (this.post.response_of && this.showRespondsTo) {
+      this.supaService
+        .fetchSinglePost(this.post.response_of)
+        .then((resultPost) => (this.respondsTo = resultPost));
+    }
+
+    if (this.post.quote_of && this.showQuoting) {
+      this.supaService
+        .fetchSinglePost(this.post.quote_of)
+        .then((resultPost) => (this.quoting = resultPost));
+    }
 
     if (this.showComments) {
       this.supaService

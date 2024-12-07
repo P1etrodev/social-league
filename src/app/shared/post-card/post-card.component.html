@@ -1,5 +1,13 @@
 @defer (when champion && post) {
 <div class="container">
+  @defer(when showRespondsTo && respondsTo) {
+  <p id="responds-to">
+    Respuesta a
+    <a href="/post/{{ post.response_of }}" title="{{ respondsTo.content }}">{{
+      respondsTo.content
+    }}</a>
+  </p>
+  }
   <div class="post">
     <div class="left">
       <a href="/champions/{{ post.champion_id }}" class="icon">
@@ -22,6 +30,13 @@
           <span class="created-at">{{ post.created_at | relativeDate }}</span>
         </div>
         <p class="content">{{ post.content }}</p>
+        @defer(when showQuoting && quoting) {
+        <post-card
+          id="quotes-to"
+          [showRespondsTo]="false"
+          [post]="quoting"
+        ></post-card>
+        }
       </div>
       <div class="footer">
         <div class="actions">
@@ -48,6 +63,7 @@
       class="comment"
       [poster]="post.champion_id"
       [post]="response"
+      [showRespondsTo]="false"
     />
   </div>
   <new-response

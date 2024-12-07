@@ -1,6 +1,10 @@
 <div id="content">
   <new-post (onPostAdded)="onPostAdded($event)"></new-post>
-  @defer(when posts) {
+  @if(this.supaService.newPosts > 0) {
+  <button id="retrieve-posts-button" (click)="retrievePosts()">
+    Mostrar {{ this.supaService.newPosts }} publicaciones
+  </button>
+  } @defer(when posts) {
   <div id="posts">
     <post-card
       class="post"
