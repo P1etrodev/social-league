@@ -45,7 +45,7 @@ export class ProfileComponent implements OnInit {
   currentContent: 'posts' | 'responses' | 'skins' | 'skills' = 'posts';
 
   ngOnInit() {
-    const championId = this.route.snapshot.paramMap.get('championId') as string;
+    const championId = this.route.snapshot.paramMap.get('id') as string;
     this.champsService.ready$.subscribe((ready) => {
       if (ready)
         this.champsService
