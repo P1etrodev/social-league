@@ -2,6 +2,7 @@ import { ChampionsComponent } from './views/champions/champions.component';
 import { HomeComponent } from './views/home/home.component';
 import { PostComponent } from './views/post/post.component';
 import { ProfileComponent } from './views/profile/profile.component';
+import { QuotesComponent } from './views/quotes/quotes.component';
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
@@ -12,14 +13,28 @@ export const routes: Routes = [
   },
   {
     path: 'champions',
-    component: ChampionsComponent,
-  },
-  {
-    path: 'champions/:championId',
-    component: ProfileComponent,
+    children: [
+      {
+        path: '',
+        component: ChampionsComponent,
+      },
+      {
+        path: ':championId',
+        component: ProfileComponent,
+      },
+    ],
   },
   {
     path: 'post/:id',
-    component: PostComponent,
+    children: [
+      {
+        path: '',
+        component: PostComponent,
+      },
+      {
+        path: 'quotes',
+        component: QuotesComponent,
+      },
+    ],
   },
 ];

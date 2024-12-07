@@ -26,14 +26,21 @@ export class PostCardComponent implements OnInit {
   supaService = inject(SupaService);
   champsService = inject(ChampionsService);
 
+  // Display settings
+  @Input() isQuote = false;
   @Input() showComments = false;
   @Input() showRespondsTo = true;
-  @Input() showQuoting = true;
+  @Input() showQuotedPost = true;
+
+  // Quote settings
+  showQuoteActions = false;
+  showNewQuoteForm = false;
+
   @Input() poster!: string;
   @Input() post!: Post;
   champion!: Champion;
   respondsTo!: Post;
-  quoting!: Post;
+  quotedPost!: Post;
   responses = new Array<Post>();
 
   ngOnInit() {
@@ -47,10 +54,10 @@ export class PostCardComponent implements OnInit {
         .then((resultPost) => (this.respondsTo = resultPost));
     }
 
-    if (this.post.quote_of && this.showQuoting) {
+    if (this.post.quote_of && this.showQuotedPost) {
       this.supaService
         .fetchSinglePost(this.post.quote_of)
-        .then((resultPost) => (this.quoting = resultPost));
+        .then((resultPost) => (this.quotedPost = resultPost));
     }
 
     if (this.showComments) {

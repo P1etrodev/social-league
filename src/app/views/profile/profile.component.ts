@@ -57,7 +57,12 @@ export class ProfileComponent implements OnInit {
             );
             this.supaService
               .fetchPosts(this.champion.id)
-              .then((res) => (this.posts = res.posts));
+              .then(
+                (res) =>
+                  (this.posts = res.posts.filter(
+                    (e: Post) => e.response_of === null
+                  ))
+              );
             this.supaService
               .fetchResponses(this.champion.id, 'champion')
               .then((res) => {

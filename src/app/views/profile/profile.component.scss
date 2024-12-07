@@ -154,11 +154,11 @@
         color: vars.$primary;
       }
     }
-    #profile-comments {
+    #profile-responses {
       display: flex;
       flex-flow: column-reverse;
       width: 100%;
-      .comment:not(:last-child) {
+      .response:not(:last-child) {
         border-top: vars.$primary 2px solid;
       }
 

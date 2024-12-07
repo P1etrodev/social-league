@@ -9,11 +9,17 @@ import { NewQuote, Post } from 'src/models/post.model';
 
 import { ChampionSelectComponent } from '../../champion-select/champion-select.component';
 import { ChampionsService } from 'src/app/services/champions.service';
+import { PostCardComponent } from '../post-card.component';
 import { SupaService } from 'src/app/services/supa.service';
 
 @Component({
   selector: 'new-quote',
-  imports: [FormsModule, ReactiveFormsModule, ChampionSelectComponent],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    ChampionSelectComponent,
+    PostCardComponent,
+  ],
   templateUrl: './new-quote.component.html',
   styleUrl: './new-quote.component.scss',
 })
@@ -21,10 +27,14 @@ export class NewQuoteComponent {
   private supaService = inject(SupaService);
   champsService = inject(ChampionsService);
 
-  @Input() postId!: string;
-  @Output() onResponseAdded = new EventEmitter<Post>();
+  @Input() post!: Post;
+  @Output() onCancel = new EventEmitter();
 
   newQuoteContent = new FormControl('', Validators.required);
+
+  onCloseClicked() {
+    this.onCancel.emit();
+  }
 
   onSubmit() {
     const now = new Date();
@@ -39,12 +49,12 @@ export class NewQuoteComponent {
         created_at: formattedDate,
         champion_id: this.champsService.selectedChampion.id,
         content: this.newQuoteContent.value as string,
-        quote_of: this.postId,
+        quote_of: this.post.id,
       };
-      this.supaService
-        .addQuote(newQuote)
-        .then((res) => this.onResponseAdded.emit(res));
+      this.supaService.addQuote(newQuote);
       this.newQuoteContent.reset();
+      this.post.quotes_count[0].count++;
+      this.onCloseClicked();
     }
   }
 }

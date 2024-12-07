@@ -59,7 +59,7 @@
     @if (this.currentContent === 'posts') {
     <div id="profile-posts">
       @defer (when posts) { @if (!posts.length) {
-      <h1 id="empty">{{ champion.name }} aún no tiene publicaciones.</h1>
+      <h1 class="empty">{{ champion.name }} aún no tiene publicaciones.</h1>
       }
       <post-card
         class="post"
@@ -75,12 +75,12 @@
     } @else if (this.currentContent === 'responses') {
     <div id="profile-responses">
       @defer (when responses) { @if (!responses.length) {
-      <h1 id="empty">
+      <h1 class="empty">
         {{ champion.name }} aún no respondió a ninguna publicación.
       </h1>
       }
       <post-card
-        class="comment"
+        class="response"
         *ngFor="let response of responses"
         [post]="response"
       ></post-card>

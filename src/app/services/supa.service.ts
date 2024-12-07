@@ -33,10 +33,6 @@ export class SupaService {
   }
 
   async fetchPosts(championId?: string) {
-    let cacheKeys = ['db', 'posts', 'all'];
-    if (championId) cacheKeys = ['db', 'posts', championId];
-    const cachedPosts = this.cacheService.get(cacheKeys);
-    if (cachedPosts && this.newPosts === 0) return cachedPosts;
     const query = this.supa
       .from('posts_v2')
       .select(this.postColumns, { count: 'exact' })
@@ -46,14 +42,10 @@ export class SupaService {
     }
     const response: any = await query;
     const data = { posts: response.data as Post[], count: response.count || 0 };
-    this.cacheService.set(cacheKeys, data);
     return data;
   }
 
   async fetchResponses(id: string, _for: 'champion' | 'post') {
-    const cacheKeys = ['db', 'responses', _for, id];
-    const cachedResponses = this.cacheService.get(cacheKeys);
-    if (cachedResponses && this.newPosts === 0) return cachedResponses;
     const query = this.supa
       .from(this.postsTableName)
       .select(this.postColumns, { count: 'exact' })
@@ -72,18 +64,14 @@ export class SupaService {
       responses: response.data as Post[],
       count: response.count || 0,
     };
-    this.cacheService.set(cacheKeys, data);
     return data;
   }
 
   async fetchQuotes(id: string, _for: 'champion' | 'post') {
-    const cacheKeys = ['db', 'quotes', _for, id];
-    const cachedQuotes = this.cacheService.get(cacheKeys);
-    if (cachedQuotes && this.newPosts === 0) return cachedQuotes;
     const query = this.supa
       .from(this.postsTableName)
       .select(this.postColumns, { count: 'exact' })
-      .not('quote_of', 'eq', null)
+      .filter('quote_of', 'not.is', null)
       .order('created_at', { ascending: true });
     switch (_for) {
       case 'champion':
@@ -98,17 +86,10 @@ export class SupaService {
       quotes: response.data as Post[],
       count: response.count || 0,
     };
-    this.cacheService.set(cacheKeys, data);
     return data;
   }
 
   async fetchSinglePost(id: string) {
-    let cacheKeys = ['db', 'posts', 'all'];
-    const cachedPosts = this.cacheService.get(cacheKeys).posts as Post[];
-    if (cachedPosts && this.newPosts === 0) {
-      const cachedPost = cachedPosts.find((e) => e.id === id);
-      if (cachedPost) return cachedPost;
-    }
     return await this.supa
       .from(this.postsTableName)
       .select(this.postColumns)
