@@ -3,9 +3,7 @@ import { KeyValuePipe, NgClass, NgFor } from '@angular/common';
 
 import { ActivatedRoute } from '@angular/router';
 import { Champion } from 'src/models/champion.model';
-import { ChampionsService } from 'src/app/champions.service';
-import { Comment } from 'src/models/comment.model';
-import { CommentCardComponent } from '../../shared/comment-card/comment-card.component';
+import { ChampionsService } from 'src/app/services/champions.service';
 import { IdentifierPipe } from '../../pipes/identifier.pipe';
 import { NgForOf } from '@angular/common';
 import { Post } from 'src/models/post.model';
@@ -13,7 +11,7 @@ import { PostCardComponent } from '../../shared/post-card/post-card.component';
 import { SkinsComponent } from './skins/skins.component';
 import { SpellsComponent } from './spells/spells.component';
 import { StarsComponent } from './stars/stars.component';
-import { SupaService } from 'src/app/supa.service';
+import { SupaService } from 'src/app/services/supa.service';
 import { TagAsClass } from '../../pipes/tag-as-class.pipe';
 import { Title } from '@angular/platform-browser';
 
@@ -28,7 +26,6 @@ import { Title } from '@angular/platform-browser';
     StarsComponent,
     SkinsComponent,
     PostCardComponent,
-    CommentCardComponent,
     SpellsComponent,
     TagAsClass,
   ],
@@ -43,24 +40,36 @@ export class ProfileComponent implements OnInit {
 
   champion!: Champion;
   posts!: Post[];
-  comments!: Comment[];
+  responses!: Post[];
 
-  currentContent: 'posts' | 'comments' | 'skins' | 'skills' = 'posts';
+  currentContent: 'posts' | 'responses' | 'skins' | 'skills' = 'posts';
 
   ngOnInit() {
     const championId = this.route.snapshot.paramMap.get('championId') as string;
-    this.champsService
-      .getFullChampion(championId)
-      .then((result) => (this.champion = result))
-      .then(() => {
-        this.titleService.setTitle(`${this.champion.name} | ${document.title}`);
-        this.supaService
-          .fetchPosts(this.champion.id)
-          .then((posts) => (this.posts = posts));
-        this.supaService.fetchComments(this.champion.id).then((comments) => {
-          this.comments = comments;
-        });
-      });
+    this.champsService.ready$.subscribe((ready) => {
+      if (ready)
+        this.champsService
+          .fetchFullChampion(championId)
+          .then((result) => (this.champion = result))
+          .then(() => {
+            this.titleService.setTitle(
+              `${this.champion.name} | ${document.title}`
+            );
+            this.supaService
+              .fetchPosts(this.champion.id)
+              .then(
+                (res) =>
+                  (this.posts = res.posts.filter(
+                    (e: Post) => e.response_of === null
+                  ))
+              );
+            this.supaService
+              .fetchResponses(this.champion.id, 'champion')
+              .then((res) => {
+                this.responses = res.responses;
+              });
+          });
+    });
   }
 
   parseStatName(statName: string) {
@@ -73,7 +82,7 @@ export class ProfileComponent implements OnInit {
     return translations[statName] as string;
   }
 
-  setCurrentContent(content: 'posts' | 'comments' | 'skins') {
+  setCurrentContent(content: 'posts' | 'responses' | 'skins') {
     this.currentContent = content;
   }
 }

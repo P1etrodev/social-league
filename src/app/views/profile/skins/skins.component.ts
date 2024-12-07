@@ -9,7 +9,7 @@ import {
 import { NgClass, NgForOf } from '@angular/common';
 
 import { Champion } from 'src/models/champion.model';
-import { ChampionsService } from 'src/app/champions.service';
+import { ChampionsService } from 'src/app/services/champions.service';
 
 @Component({
   selector: 'skins',

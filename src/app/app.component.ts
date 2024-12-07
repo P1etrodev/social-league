@@ -1,7 +1,7 @@
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { Component, inject } from '@angular/core';
 
-import { ChampionsService } from './champions.service';
+import { ChampionsService } from './services/champions.service';
 
 @Component({
   selector: 'app-root',

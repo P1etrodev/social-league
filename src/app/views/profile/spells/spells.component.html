@@ -1,11 +1,13 @@
 @defer (when spells) {
 <div id="spells">
   <spell
+    [championId]="championId"
     [spell]="passive"
-    [isPassive]="true"
+    type="passive"
     (onHover)="current = $event"
   ></spell>
   <spell
+    [championId]="championId"
     *ngFor="let spell of spells; let i = index"
     (onHover)="current = $event"
     [index]="i"
