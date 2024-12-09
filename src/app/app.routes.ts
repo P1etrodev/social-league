@@ -5,8 +5,9 @@ import { PostComponent } from './views/post/post.component';
 import { ProfileComponent } from './views/profile/profile.component';
 import { QuotesComponent } from './views/quotes/quotes.component';
 import { Routes } from '@angular/router';
-import { championIdResolver } from './resolvers/champion-id.resolver';
-import { postIdResolver } from './resolvers/post-id.resolver';
+
+// import { championIdResolver } from './resolvers/champion-id.resolver';
+// import { postIdResolver } from './resolvers/post-id.resolver';
 
 export const routes: Routes = [
   {
@@ -24,13 +25,15 @@ export const routes: Routes = [
       {
         path: ':id',
         component: ProfileComponent,
-        resolve: { valid: championIdResolver },
+        // FIXME
+        // resolve: { valid: championIdResolver },
       },
     ],
   },
   {
     path: 'post/:id',
-    resolve: { valid: postIdResolver },
+    // FIXME
+    // resolve: { valid: postIdResolver },
     children: [
       {
         path: '',
